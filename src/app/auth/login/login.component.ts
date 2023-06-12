@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { StorageService } from 'src/app/services/storage.service'; 
+import { StorageService } from 'src/app/services/storage.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [MessageService]
 })
 export class LoginComponent implements OnInit {
   form: any = {
@@ -17,7 +19,10 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private storageService: StorageService) { }
+  constructor(
+    private authService: AuthService, 
+    private storageService: StorageService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
@@ -39,11 +44,16 @@ export class LoginComponent implements OnInit {
         this.reloadPage();
       },
       error: err => {
-        this.errorMessage = err.error.message;
+        console.log("Ошибка входа");
+        this.showError(err.error.message);
         this.isLoginFailed = true;
       }
     });
   }
+
+  showError(errorMessage: string) {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: errorMessage });
+}
 
   reloadPage(): void {
     window.location.reload();

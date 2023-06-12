@@ -12,6 +12,11 @@ import { DevicesListComponent } from './adv-devices/devices-list/devices-list.co
 import { LoginComponent } from './auth/login/login.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 
+// PrimeNG
+import { ToastModule } from 'primeng/toast';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,9 +28,11 @@ import { ProfileComponent } from './profile/profile/profile.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ToastModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
