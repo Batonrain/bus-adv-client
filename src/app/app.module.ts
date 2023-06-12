@@ -14,7 +14,9 @@ import { ProfileComponent } from './profile/profile/profile.component';
 
 // PrimeNG
 import { ToastModule } from 'primeng/toast';
+import { InputTextModule } from 'primeng/inputtext';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     ToastModule,
+    InputTextModule,
+    ButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
