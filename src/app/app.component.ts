@@ -22,10 +22,19 @@ export class AppComponent {
 
     if (this.isLoggedIn) {
       const user = this.storageService.getUser();
+      console.log("USER: ", user);
       this.roles = user.roles;
 
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+      console.log("ROLES: ", this.roles);
+      switch(user.role){
+        case "Admin":
+          this.showAdminBoard = true;
+          this.showModeratorBoard = true;
+          break;
+        case "Moderator":
+          this.showModeratorBoard = true;
+          break; 
+        }
 
       this.username = user.username;
     }
