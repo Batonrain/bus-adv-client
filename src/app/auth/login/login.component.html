@@ -14,8 +14,8 @@
         <!-- Email input -->
         <div class="form-outline mb-4">
           <span class="p-float-label">
-            <input pInputText id="username" name="username" [(ngModel)]="form.username" required #username="ngModel"
-              [ngClass]="{ 'is-invalid': f.submitted && username.errors }" class="form-control" />
+            <input autofocus pInputText id="username" name="username" [(ngModel)]="form.username" required #username="ngModel"
+              [ngClass]="{ 'is-invalid': f.submitted && username.errors, 'ng-touched':true }" class="form-control" />
             <label htmlFor="username">Ваш логин</label>
           </span>
         </div>
@@ -26,7 +26,7 @@
         <!-- Password input -->
         <div class="form-outline mb-4">
           <span class="p-float-label">
-            <input pInputText type="password" id="passwordInput" name="password" [(ngModel)]="form.password" required
+            <input  pInputText type="password" id="passwordInput" name="password" [(ngModel)]="form.password" required
               #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }" class="form-control" />
             <label htmlFor="passwordInput">Пароль</label>
           </span>

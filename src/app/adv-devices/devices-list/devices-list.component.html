@@ -1,1 +1,30 @@
-<p>devices-list works!</p>
+
+<p-table [value]="devices" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Название</th>
+            <th>Город</th>
+            <th>Тип размещения</th>
+            <th>Техник</th>
+            <th>Версия</th>
+            <th>Хранилище</th>
+            <th>Путь</th>
+            <th>Трансляция</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-device>
+        <tr>
+            <td>{{ device.Name }}</td>
+            <td>{{ device.City }}</td>
+            <td>{{ device.AllocationType }}</td>
+            <td>{{ device.Technician }}</td>
+            <td>{{ device.Version }}</td>
+            <td>{{ device.Bucket }}</td>
+            <td>{{ device.Route }}</td>
+            <td>
+                <p-button (click)="show()" icon="pi pi-external-link" label="Смотреть"></p-button>
+            </td>
+            
+        </tr>
+    </ng-template>
+</p-table>

@@ -17,7 +17,10 @@ import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
-
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { VideoStreamComponent } from './adv-devices/video-stream/video-stream.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { ButtonModule } from 'primeng/button';
     DevicesListComponent,
     LoginComponent,
     ProfileComponent,
+    VideoStreamComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +41,9 @@ import { ButtonModule } from 'primeng/button';
     ToastModule,
     InputTextModule,
     ButtonModule,
+    TableModule,
+    DialogModule,
+    DynamicDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

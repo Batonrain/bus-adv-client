@@ -14,6 +14,9 @@
       <li class="nav-item">
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">Пользователь</a>
       </li>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a href="/devices" class="nav-link" routerLink="devices">Устройства</a>
+      </li>
     </ul>
 
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
@@ -27,7 +30,7 @@
         <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
       </li>
       <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
+        <p-button styleClass="p-button-link nav-link" (click)="logout()">Выйти</p-button>
       </li>
     </ul>
   </nav>
