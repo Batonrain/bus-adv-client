@@ -22,9 +22,6 @@ export class DevicesListComponent implements OnInit {
     this.deviceService.getDevices()
     .subscribe({
       next: result => {
-        console.log("this.deviceService.getDevices")
-        console.log(result);
-        console.log(result.devices);
         this.devices = result.devices;
       },
       error: err => {
@@ -35,8 +32,8 @@ export class DevicesListComponent implements OnInit {
 
   show() {
     this.ref = this.dialogService.open(VideoStreamComponent, { 
-      header: 'Select a Product',
-      width: '70%',
+      header: 'Прямая трансляция',
+      width: '50%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
@@ -44,5 +41,12 @@ export class DevicesListComponent implements OnInit {
         url: 'http://vpn.indoortv116.ru/kinograd'
       }
     });
+  }
+
+  getSeverity(status: any): string {
+    if(status.isOnline == true){
+      return 'success'
+    }
+    return 'danger'
   }
 }

@@ -11,6 +11,7 @@ import { RoutesListComponent } from './adv-devices/routes-list/routes-list.compo
 import { DevicesListComponent } from './adv-devices/devices-list/devices-list.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ProfileComponent } from './profile/profile/profile.component';
+import { VideoStreamComponent } from './adv-devices/video-stream/video-stream.component';
 
 // PrimeNG
 import { ToastModule } from 'primeng/toast';
@@ -20,7 +21,8 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
-import { VideoStreamComponent } from './adv-devices/video-stream/video-stream.component';
+import { TagModule } from 'primeng/tag';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { VideoStreamComponent } from './adv-devices/video-stream/video-stream.co
     TableModule,
     DialogModule,
     DynamicDialogModule,
+    TagModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -22,7 +22,6 @@ export class AppComponent {
 
     if (this.isLoggedIn) {
       const user = this.storageService.getUser();
-      console.log("USER: ", user);
 
       switch(user.role){
         case "Admin":
@@ -41,7 +40,6 @@ export class AppComponent {
   logout(): void {
     this.authService.logout().subscribe({
       next: res => {
-        console.log(res);
         this.storageService.clean();
 
         window.location.reload();

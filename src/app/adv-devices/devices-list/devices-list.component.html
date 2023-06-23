@@ -1,8 +1,9 @@
-
-<p-table [value]="devices" [tableStyle]="{ 'min-width': '50rem' }">
+<div class="card">
+<p-table [value]="devices" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
         <tr>
             <th>Название</th>
+            <th>Статус</th>
             <th>Город</th>
             <th>Тип размещения</th>
             <th>Техник</th>
@@ -15,6 +16,9 @@
     <ng-template pTemplate="body" let-device>
         <tr>
             <td>{{ device.Name }}</td>
+            <td>
+                <p-tag [value]="device.Status.text" [severity]="getSeverity(device.Status)"></p-tag>
+            </td>
             <td>{{ device.City }}</td>
             <td>{{ device.AllocationType }}</td>
             <td>{{ device.Technician }}</td>
@@ -28,3 +32,4 @@
         </tr>
     </ng-template>
 </p-table>
+</div>
