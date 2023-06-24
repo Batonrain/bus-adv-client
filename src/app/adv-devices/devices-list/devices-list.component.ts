@@ -3,6 +3,7 @@ import { DevicesService } from 'src/app/services/devices.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { VideoStreamComponent } from '../video-stream/video-stream.component';
 import { Table } from 'primeng/table';
+import { FilesListComponent } from '../files-list/files-list.component';
 
 @Component({
   selector: 'app-devices-list',
@@ -14,46 +15,61 @@ export class DevicesListComponent implements OnInit {
 
   constructor(
     private deviceService: DevicesService,
-    public dialogService: DialogService){} 
+    public dialogService: DialogService) { }
 
   public devices: any
   ref: DynamicDialogRef | undefined;
 
   ngOnInit(): void {
     this.deviceService.getDevices()
-    .subscribe({
-      next: result => {
-        this.devices = result.devices;
-      },
-      error: err => {
-        console.log(err);
+      .subscribe({
+        next: result => {
+          this.devices = result.devices;
+          console.log(this.devices);
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
+  }
+
+  filter(table: Table, text: any): void {
+    table.filterGlobal(text.value, 'contains');
+  }
+
+  showFiles(name:string, bucket: string, prefix: string): void {
+    this.ref = this.dialogService.open(FilesListComponent, {
+      header: 'Плейлист ' + name,
+      width: '60%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+      data: {
+        bucket: bucket,
+        prefix: prefix
       }
     });
   }
 
-  filter(table: Table, text: any): void{
-    table.filterGlobal(text.value, 'contains');
-  }
-
-  show(): void {
-    this.ref = this.dialogService.open(VideoStreamComponent, { 
+  showTranslation(url: string): void {
+    this.ref = this.dialogService.open(VideoStreamComponent, {
       header: 'Прямая трансляция',
       width: '50%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
       data: {
-        url: 'http://vpn.indoortv116.ru/kinograd'
+        url: url
       }
     });
   }
 
   clear(table: Table) {
     table.clear();
-}
+  }
 
   getSeverity(status: any): string {
-    if(status.isOnline == true){
+    if (status.isOnline == true) {
       return 'success'
     }
     return 'danger'

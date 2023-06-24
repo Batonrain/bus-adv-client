@@ -34,10 +34,12 @@
                 <td>{{ device.AllocationType }}</td>
                 <td>{{ device.Technician }}</td>
                 <td>{{ device.Version }}</td>
-                <td>{{ device.Bucket }}</td>
+                <td>
+                    <p-button (click)="showFiles(device.Name, device.Bucket, device.Prefix)" icon="pi pi-external-link" label="Редактировать"></p-button>
+                </td>
                 <td>{{ device.Route }}</td>
                 <td>
-                    <p-button (click)="show()" icon="pi pi-external-link" label="Смотреть"></p-button>
+                    <p-button (click)="showTranslation(device)" icon="pi pi-external-link" label="Смотреть"></p-button>
                 </td>
 
             </tr>

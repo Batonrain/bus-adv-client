@@ -22,6 +22,7 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { TagModule } from 'primeng/tag';
+import { FilesListComponent } from './adv-devices/files-list/files-list.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { TagModule } from 'primeng/tag';
     LoginComponent,
     ProfileComponent,
     VideoStreamComponent,
+    FilesListComponent,
   ],
   imports: [
     BrowserModule,

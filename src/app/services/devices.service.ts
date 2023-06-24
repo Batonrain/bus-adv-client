@@ -13,4 +13,13 @@ export class DevicesService {
   getDevices(): Observable<any>{
     return this.http.get(environment.ApiBase + 'devices')
   }
+
+  getObjects(bucket: string, prefix:string): Observable<any>{
+    console.log(bucket, prefix);
+    return this.http.get(environment.ApiBase + 'objects', {
+      params: {
+        bucket: bucket,
+        prefix: prefix
+      }})
+  }
 }
