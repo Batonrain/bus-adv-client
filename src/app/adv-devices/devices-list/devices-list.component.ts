@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DevicesService } from 'src/app/services/devices.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { VideoStreamComponent } from '../video-stream/video-stream.component';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-devices-list',
@@ -30,7 +31,11 @@ export class DevicesListComponent implements OnInit {
     });
   }
 
-  show() {
+  filter(table: Table, text: any): void{
+    table.filterGlobal(text.value, 'contains');
+  }
+
+  show(): void {
     this.ref = this.dialogService.open(VideoStreamComponent, { 
       header: 'Прямая трансляция',
       width: '50%',
@@ -42,6 +47,10 @@ export class DevicesListComponent implements OnInit {
       }
     });
   }
+
+  clear(table: Table) {
+    table.clear();
+}
 
   getSeverity(status: any): string {
     if(status.isOnline == true){
