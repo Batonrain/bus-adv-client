@@ -15,11 +15,18 @@ export class DevicesService {
   }
 
   getObjects(bucket: string, prefix:string): Observable<any>{
-    console.log(bucket, prefix);
     return this.http.get(environment.ApiBase + 'objects', {
       params: {
         bucket: bucket,
         prefix: prefix
       }})
+  }
+
+  getCities():Observable<any>{
+    return this.http.get(environment.ApiBase + 'cities')
+  }
+
+  getTypesOfAllocations():Observable<any>{
+    return this.http.get(environment.ApiBase + 'types_of_allocation')
   }
 }

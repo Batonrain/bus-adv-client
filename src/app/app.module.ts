@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,8 @@ import { DevicesListComponent } from './adv-devices/devices-list/devices-list.co
 import { LoginComponent } from './auth/login/login.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { VideoStreamComponent } from './adv-devices/video-stream/video-stream.component';
+import { FilesListComponent } from './adv-devices/files-list/files-list.component';
+import { AddDeviceComponent } from './adv-devices/add-device/add-device.component';
 
 // PrimeNG
 import { ToastModule } from 'primeng/toast';
@@ -22,7 +25,7 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { TagModule } from 'primeng/tag';
-import { FilesListComponent } from './adv-devices/files-list/files-list.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
@@ -35,6 +38,7 @@ import { FilesListComponent } from './adv-devices/files-list/files-list.componen
     ProfileComponent,
     VideoStreamComponent,
     FilesListComponent,
+    AddDeviceComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,7 @@ import { FilesListComponent } from './adv-devices/files-list/files-list.componen
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     ToastModule,
     InputTextModule,
     ButtonModule,
@@ -49,6 +54,7 @@ import { FilesListComponent } from './adv-devices/files-list/files-list.componen
     DialogModule,
     DynamicDialogModule,
     TagModule,
+    DropdownModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,6 +4,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { VideoStreamComponent } from '../video-stream/video-stream.component';
 import { Table } from 'primeng/table';
 import { FilesListComponent } from '../files-list/files-list.component';
+import { AddDeviceComponent } from '../add-device/add-device.component';
 
 @Component({
   selector: 'app-devices-list',
@@ -33,11 +34,22 @@ export class DevicesListComponent implements OnInit {
       });
   }
 
+  addNewDevice(): void {
+    this.ref = this.dialogService.open(AddDeviceComponent, {
+      header: 'Добавление нового устройства',
+      width: '50%',
+      height: '80%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+    });
+  }
+
   filter(table: Table, text: any): void {
     table.filterGlobal(text.value, 'contains');
   }
 
-  showFiles(name:string, bucket: string, prefix: string): void {
+  showFiles(name: string, bucket: string, prefix: string): void {
     this.ref = this.dialogService.open(FilesListComponent, {
       header: 'Плейлист ' + name,
       width: '60%',

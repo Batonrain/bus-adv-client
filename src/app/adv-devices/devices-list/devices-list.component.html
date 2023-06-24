@@ -3,12 +3,13 @@
         [globalFilterFields]="['Name', 'City', 'Technician', 'Status.text']"
         styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="caption">
-            <div class="flex">
-                <span class="p-input-icon-left ml-auto">
-                    <i class="pi pi-search"></i>
+            <div class="flex" style="display: flex!important;">
+                <button pButton label="Добавить" (click)="addNewDevice()"></button>
+                <span class="p-input-icon-left ml-auto" style="margin-left: auto!important;">
                     <input pInputText type="text" (input)="filter(devicesTable, $event.target)"
                         placeholder="Поиск" />
                 </span>
+                
             </div>
         </ng-template>
         <ng-template pTemplate="header">
@@ -35,11 +36,11 @@
                 <td>{{ device.Technician }}</td>
                 <td>{{ device.Version }}</td>
                 <td>
-                    <p-button (click)="showFiles(device.Name, device.Bucket, device.Prefix)" icon="pi pi-external-link" label="Редактировать"></p-button>
+                    <p-button (click)="showFiles(device.Name, device.Bucket, device.Prefix)" label="Редактировать"></p-button>
                 </td>
                 <td>{{ device.Route }}</td>
                 <td>
-                    <p-button (click)="showTranslation(device)" icon="pi pi-external-link" label="Смотреть"></p-button>
+                    <p-button (click)="showTranslation(device.TranslationUrl)" label="Смотреть"></p-button>
                 </td>
 
             </tr>
