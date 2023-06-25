@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Observable, forkJoin } from 'rxjs';
+import { CitiesService } from 'src/app/services/cities.service';
 import { DevicesService } from 'src/app/services/devices.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class AddDeviceComponent implements OnInit {
 
   constructor(
     public deviceService: DevicesService,
+    public citiesService: CitiesService,
     public ref: DynamicDialogRef) {
     this.newDeviceForm = new FormGroup(
       {
@@ -33,7 +35,7 @@ export class AddDeviceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let cities = this.deviceService.getCities();
+    let cities = this.citiesService.get();
     let allocations = this.deviceService.getTypesOfAllocations();
 
     forkJoin([cities, allocations]).subscribe({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { DevicesService } from 'src/app/services/devices.service';
+import { CitiesService } from 'src/app/services/cities.service';
 
 @Component({
   selector: 'app-add-city',
@@ -10,7 +10,7 @@ import { DevicesService } from 'src/app/services/devices.service';
 })
 export class AddCityComponent implements OnInit{
   constructor(
-    public deviceService: DevicesService,
+    public citiesService: CitiesService,
     public ref: DynamicDialogRef) {
     this.cityForm = new FormGroup(
       {
@@ -25,7 +25,7 @@ export class AddCityComponent implements OnInit{
     const city = {
       name: this.cityForm.value['cityName']
     }
-    this.deviceService.addCity(city)
+    this.citiesService.add(city)
     .subscribe({
       next: result => {
         this.ref.close(result.isAdded)

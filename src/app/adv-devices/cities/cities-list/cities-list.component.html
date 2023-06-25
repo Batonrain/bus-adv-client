@@ -26,7 +26,7 @@
                         <p-button (click)="edit(city.Id)" label="Редактировать" styleClass="p-button-text"></p-button>
                     </td>
                     <td>
-                        <p-button (click)="delete(city.Id)" label="Удалить"
+                        <p-button (click)="delete(city.Id, city.Name)" label="Удалить"
                             styleClass="p-button-danger p-button-text"></p-button>
                     </td>
                 </tr>
@@ -34,5 +34,5 @@
         </p-table>
     </div>
 </div>
-<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+<p-confirmDialog [style]="{width: '50vw'}" key="deleteDialog"></p-confirmDialog>
 <p-toast></p-toast>

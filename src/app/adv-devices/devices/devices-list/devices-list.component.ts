@@ -6,6 +6,7 @@ import { Table } from 'primeng/table';
 import { FilesListComponent } from '../files-list/files-list.component';
 import { AddDeviceComponent } from '../add-device/add-device.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { CitiesService } from 'src/app/services/cities.service';
 
 @Component({
   selector: 'app-devices-list',
@@ -16,6 +17,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 export class DevicesListComponent implements OnInit {
   constructor(
     public deviceService: DevicesService,
+    public citiesService: CitiesService,
     public dialogService: DialogService,
     public messageService: MessageService) { }
 
