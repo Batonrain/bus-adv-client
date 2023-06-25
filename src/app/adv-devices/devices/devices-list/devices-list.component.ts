@@ -5,13 +5,13 @@ import { VideoStreamComponent } from '../video-stream/video-stream.component';
 import { Table } from 'primeng/table';
 import { FilesListComponent } from '../files-list/files-list.component';
 import { AddDeviceComponent } from '../add-device/add-device.component';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-devices-list',
   templateUrl: './devices-list.component.html',
   styleUrls: ['./devices-list.component.css'],
-  providers: [DialogService, MessageService],
+  providers: [DialogService, MessageService, ConfirmationService],
 })
 export class DevicesListComponent implements OnInit {
   constructor(

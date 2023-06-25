@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DevicesService } from 'src/app/services/devices.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { AddCityComponent } from '../add-city/add-city.component';
 
@@ -9,7 +9,7 @@ import { AddCityComponent } from '../add-city/add-city.component';
   selector: 'app-cities-list',
   templateUrl: './cities-list.component.html',
   styleUrls: ['./cities-list.component.css'],
-  providers: [DialogService, MessageService],
+  providers: [DialogService, MessageService, ConfirmationService],
 })
 export class CitiesListComponent implements OnInit {
   constructor(

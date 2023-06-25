@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { ProfileComponent } from './profile/profile/profile.component';
-import { DevicesListComponent } from './adv-devices/devices-list/devices-list.component';
-import { CitiesListComponent } from './adv-devices/cities-list/cities-list.component';
+import { DevicesListComponent } from './adv-devices/devices/devices-list/devices-list.component';
+import { CitiesListComponent } from './adv-devices/cities/cities-list/cities-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
