@@ -31,7 +31,6 @@ export class AppComponent {
           this.showModeratorBoard = true;
           break; 
         }
-      console.log(user)
       
       this.username = user.username;
     }

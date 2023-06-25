@@ -14,6 +14,10 @@ export class DevicesService {
     return this.http.get(environment.ApiBase + 'devices')
   }
 
+  addDevice(body: any): Observable<any> {
+    return this.http.post(environment.ApiBase + 'add_new_device', body)
+  }
+
   getObjects(bucket: string, prefix: string): Observable<any> {
     return this.http.get(environment.ApiBase + 'objects', {
       params: {
@@ -27,11 +31,11 @@ export class DevicesService {
     return this.http.get(environment.ApiBase + 'cities')
   }
 
-  getTypesOfAllocations(): Observable<any> {
-    return this.http.get(environment.ApiBase + 'types_of_allocation')
+  addCity(body: any): Observable<any> {
+    return this.http.post(environment.ApiBase + 'add_city', body)
   }
 
-  addNewDevice(body: any): Observable<any> {
-    return this.http.post(environment.ApiBase + 'add_new_device', body)
+  getTypesOfAllocations(): Observable<any> {
+    return this.http.get(environment.ApiBase + 'types_of_allocation')
   }
 }

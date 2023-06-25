@@ -8,7 +8,6 @@ import { DevicesService } from 'src/app/services/devices.service';
   selector: 'app-add-device',
   templateUrl: './add-device.component.html',
   styleUrls: ['./add-device.component.css'],
-  providers: [],
 })
 export class AddDeviceComponent implements OnInit {
   newDeviceForm: FormGroup;
@@ -61,12 +60,10 @@ export class AddDeviceComponent implements OnInit {
       prefix: this.newDeviceForm.value['deviceBucketPrefix'],
       translationUrl: this.newDeviceForm.value['deviceTranslationUrl'],
     }
-    this.deviceService.addNewDevice(device)
+    this.deviceService.addDevice(device)
     .subscribe({
       next: result => {
-        console.log("Новое устройство успешно добавлено")
-        console.log(this.ref)
-        //this.ref.close(result.isAdded)
+        this.ref.close(result.isAdded)
       },
       error: err => {
         console.log(err);

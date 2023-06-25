@@ -21,9 +21,6 @@
 
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
       <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
-      </li>
-      <li class="nav-item">
         <p-button styleClass="p-button-link nav-link" (click)="logout()">Выйти</p-button>
       </li>
     </ul>

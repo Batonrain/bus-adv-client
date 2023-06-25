@@ -11,10 +11,9 @@ import { MessageService } from 'primeng/api';
   selector: 'app-devices-list',
   templateUrl: './devices-list.component.html',
   styleUrls: ['./devices-list.component.css'],
-  providers: [DialogService, MessageService]
+  providers: [DialogService, MessageService],
 })
 export class DevicesListComponent implements OnInit {
-
   constructor(
     public deviceService: DevicesService,
     public dialogService: DialogService,
@@ -50,11 +49,8 @@ export class DevicesListComponent implements OnInit {
     this.ref.onClose.subscribe((result: boolean) => {
       if (result) {
         this.messageService.add({ severity: 'success', summary: 'Устройство успешно добавлено' });
-        this.ref?.close()
       }
     });
-
-    console.log('Родительский', this.ref);
   }
 
   filter(table: Table, text: any): void {

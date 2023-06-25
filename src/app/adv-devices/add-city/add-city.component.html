@@ -1,0 +1,15 @@
+<form [formGroup]="cityForm" novalidate (ngSubmit)="submit()">
+    <div class="form-group">
+        <label>Название города</label>
+        <input pInputText class="form-control" name="cityName" formControlName="cityName" />
+        <div class="alert alert-danger"
+            *ngIf="cityForm.controls['cityName'].invalid && cityForm.controls['cityName'].touched">
+            Не указано название города
+        </div>
+    </div>
+    <div class="form-group">
+        <button pButton class="btn btn-default" [disabled]="cityForm.invalid">
+            Добавить
+        </button>
+    </div>
+</form>
