@@ -5,18 +5,20 @@ import { VideoStreamComponent } from '../video-stream/video-stream.component';
 import { Table } from 'primeng/table';
 import { FilesListComponent } from '../files-list/files-list.component';
 import { AddDeviceComponent } from '../add-device/add-device.component';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-devices-list',
   templateUrl: './devices-list.component.html',
   styleUrls: ['./devices-list.component.css'],
-  providers: [DialogService]
+  providers: [DialogService, MessageService]
 })
 export class DevicesListComponent implements OnInit {
 
   constructor(
-    private deviceService: DevicesService,
-    public dialogService: DialogService) { }
+    public deviceService: DevicesService,
+    public dialogService: DialogService,
+    public messageService: MessageService) { }
 
   public devices: any
   ref: DynamicDialogRef | undefined;
@@ -26,7 +28,6 @@ export class DevicesListComponent implements OnInit {
       .subscribe({
         next: result => {
           this.devices = result.devices;
-          console.log(this.devices);
         },
         error: err => {
           console.log(err);
@@ -42,7 +43,18 @@ export class DevicesListComponent implements OnInit {
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
+      closeOnEscape: true,
+      closable: true,
     });
+
+    this.ref.onClose.subscribe((result: boolean) => {
+      if (result) {
+        this.messageService.add({ severity: 'success', summary: 'Устройство успешно добавлено' });
+        this.ref?.close()
+      }
+    });
+
+    console.log('Родительский', this.ref);
   }
 
   filter(table: Table, text: any): void {

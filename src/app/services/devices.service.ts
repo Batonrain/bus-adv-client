@@ -10,23 +10,28 @@ export class DevicesService {
 
   constructor(private http: HttpClient) { }
 
-  getDevices(): Observable<any>{
+  getDevices(): Observable<any> {
     return this.http.get(environment.ApiBase + 'devices')
   }
 
-  getObjects(bucket: string, prefix:string): Observable<any>{
+  getObjects(bucket: string, prefix: string): Observable<any> {
     return this.http.get(environment.ApiBase + 'objects', {
       params: {
         bucket: bucket,
         prefix: prefix
-      }})
+      }
+    })
   }
 
-  getCities():Observable<any>{
+  getCities(): Observable<any> {
     return this.http.get(environment.ApiBase + 'cities')
   }
 
-  getTypesOfAllocations():Observable<any>{
+  getTypesOfAllocations(): Observable<any> {
     return this.http.get(environment.ApiBase + 'types_of_allocation')
+  }
+
+  addNewDevice(body: any): Observable<any> {
+    return this.http.post(environment.ApiBase + 'add_new_device', body)
   }
 }

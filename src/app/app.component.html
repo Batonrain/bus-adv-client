@@ -3,19 +3,13 @@
     <a href="#" class="navbar-brand">Рекламный кабинет</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Главная </a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">Админка</a>
-      </li>
-      <li class="nav-item" *ngIf="showModeratorBoard">
-        <a href="/mod" class="nav-link" routerLink="mod">Модератор</a>
-      </li>
-      <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">Пользователь</a>
+        <a href="/profile" class="nav-link" *ngIf="isLoggedIn" routerLink="profile">Пользователь</a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
         <a href="/devices" class="nav-link" routerLink="devices">Устройства</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/cities" class="nav-link" routerLink="cities">Города</a>
       </li>
     </ul>
 
@@ -35,7 +29,7 @@
     </ul>
   </nav>
 
-  <div class="container">
+  <div class="container" style="max-width: 1420px">
     <router-outlet></router-outlet>
   </div>
 </div>

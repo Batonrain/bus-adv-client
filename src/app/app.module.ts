@@ -26,6 +26,8 @@ import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { TagModule } from 'primeng/tag';
 import { DropdownModule } from 'primeng/dropdown';
+import { TabViewModule } from 'primeng/tabview';
+import { TabMenuModule } from 'primeng/tabmenu';
 
 
 @NgModule({
@@ -55,8 +57,10 @@ import { DropdownModule } from 'primeng/dropdown';
     DynamicDialogModule,
     TagModule,
     DropdownModule,
+    TabViewModule,
+    TabMenuModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

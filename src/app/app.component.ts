@@ -21,18 +21,18 @@ export class AppComponent {
     this.isLoggedIn = this.storageService.isLoggedIn();
 
     if (this.isLoggedIn) {
-      const user = this.storageService.getUser();
+      const user = this.storageService.getUser().user;
 
       switch(user.role){
         case "Admin":
           this.showAdminBoard = true;
-          this.showModeratorBoard = true;
           break;
         case "Moderator":
           this.showModeratorBoard = true;
           break; 
         }
-
+      console.log(user)
+      
       this.username = user.username;
     }
   }

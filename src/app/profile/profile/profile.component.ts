@@ -12,6 +12,6 @@ export class ProfileComponent {
   constructor(private storageService: StorageService) { }
 
   ngOnInit(): void {
-    this.currentUser = this.storageService.getUser();
+    this.currentUser = this.storageService.getUser().user;
   }
 }
