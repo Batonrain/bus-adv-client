@@ -55,6 +55,29 @@ export class DevicesListComponent implements OnInit {
     });
   }
 
+  editDevice(device: any): void {
+    this.ref = this.dialogService.open(AddDeviceComponent, {
+      header: 'Редактирование нового устройства',
+      width: '50%',
+      height: '80%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+      closeOnEscape: true,
+      closable: true,
+      data: {
+        id: device.Id,
+        device: device,
+      }
+    });
+
+    this.ref.onClose.subscribe((result: boolean) => {
+      if (result) {
+        this.messageService.add({ severity: 'success', summary: 'Устройство успешно обновлено' });
+      }
+    });
+  }
+
   filter(table: Table, text: any): void {
     table.filterGlobal(text.value, 'contains');
   }

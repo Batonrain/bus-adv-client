@@ -35,6 +35,9 @@ export class CitiesListComponent implements OnInit {
       maximizable: true,
       closeOnEscape: true,
       closable: true,
+      data: {
+        isEdit: false,
+      }
     });
 
     this.ref.onClose.subscribe((result: boolean) => {
@@ -45,7 +48,30 @@ export class CitiesListComponent implements OnInit {
     });
   }
 
-  edit(id: string): void { }
+  edit(id: string, name: string): void {
+    this.ref = this.dialogService.open(AddCityComponent, {
+      header: 'Редактирование города',
+      width: '50%',
+      height: '50%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+      closeOnEscape: true,
+      closable: true,
+      data: {
+        isEdit: true,
+        id: id,
+        name: name
+      }
+    });
+
+    this.ref.onClose.subscribe((result: boolean) => {
+      if (result) {
+        this.loadData();
+        this.messageService.add({ severity: 'success', summary: 'Устройство успешно добавлено' });
+      }
+    });
+   }
 
   delete(id: string, name: string): void {
     const city = {

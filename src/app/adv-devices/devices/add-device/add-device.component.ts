@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Observable, forkJoin } from 'rxjs';
+import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { forkJoin } from 'rxjs';
 import { CitiesService } from 'src/app/services/cities.service';
 import { DevicesService } from 'src/app/services/devices.service';
 
@@ -14,24 +14,33 @@ export class AddDeviceComponent implements OnInit {
   newDeviceForm: FormGroup;
   cities: any;
   types_of_allocation: any;
+  isEdit: boolean = false;
+  id: string = ''
 
   constructor(
     public deviceService: DevicesService,
     public citiesService: CitiesService,
+    public dialogConfig: DynamicDialogConfig,
     public ref: DynamicDialogRef) {
+    //this.isEdit = this.dialogConfig.data['isEdit'];
+
     this.newDeviceForm = new FormGroup(
       {
-        'deviceName': new FormControl('qqq', Validators.required),
+        'deviceName': new FormControl('', Validators.required),
         'deviceCity': new FormControl('', Validators.required),
         'deviceAllocationType': new FormControl('', Validators.required),
-        'deviceRoute': new FormControl('qqq', Validators.required),
-        'deviceMachineNumber': new FormControl('qqq', Validators.required),
-        'deviceTechName': new FormControl('qqq', Validators.required),
-        'deviceVersion': new FormControl('qqq', Validators.required),
-        'deviceBucketName': new FormControl('qqq', Validators.required),
-        'deviceBucketPrefix': new FormControl('qqq', Validators.required),
-        'deviceTranslationUrl': new FormControl('qqq', Validators.required),
+        'deviceRoute': new FormControl('', Validators.required),
+        'deviceMachineNumber': new FormControl('', Validators.required),
+        'deviceTechName': new FormControl('', Validators.required),
+        'deviceVersion': new FormControl('', Validators.required),
+        'deviceBucketName': new FormControl('', Validators.required),
+        'deviceBucketPrefix': new FormControl('', Validators.required),
+        'deviceTranslationUrl': new FormControl('', Validators.required),
       });
+
+    // if (!this.isEdit) {
+    //   this.initEditForm(this.dialogConfig.data['device'])
+    // }
   }
 
   ngOnInit(): void {
@@ -63,13 +72,30 @@ export class AddDeviceComponent implements OnInit {
       translationUrl: this.newDeviceForm.value['deviceTranslationUrl'],
     }
     this.deviceService.addDevice(device)
-    .subscribe({
-      next: result => {
-        this.ref.close(result.isAdded)
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
+      .subscribe({
+        next: result => {
+          this.ref.close(result.isAdded)
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
+  }
+
+  private initEditForm(device: any): void {
+    console.log(device);
+    this.newDeviceForm = new FormGroup(
+      {
+        'deviceName': new FormControl('', Validators.required),
+        'deviceCity': new FormControl('', Validators.required),
+        'deviceAllocationType': new FormControl('', Validators.required),
+        'deviceRoute': new FormControl('', Validators.required),
+        'deviceMachineNumber': new FormControl('', Validators.required),
+        'deviceTechName': new FormControl('', Validators.required),
+        'deviceVersion': new FormControl('', Validators.required),
+        'deviceBucketName': new FormControl('', Validators.required),
+        'deviceBucketPrefix': new FormControl('', Validators.required),
+        'deviceTranslationUrl': new FormControl('', Validators.required),
+      });
   }
 }

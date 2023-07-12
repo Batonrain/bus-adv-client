@@ -1,21 +1,27 @@
 <p-toast></p-toast>
 
-<div class="container p-5">
+<div class="container p-5" style="background-color: #808080;">
   <div class="row">
     <div class="col-sm">
     </div>
     <div class="col-sm">
-      <form 
-      *ngIf="!isLoggedIn" 
-      name="form" 
-      (ngSubmit)="f.form.valid && onSubmit()" 
-      #f="ngForm" 
-      novalidate>
+      <img width="337" height="266" src="assets/img/logo_bel.png" alt="">
+    </div>
+    <div class="col-sm">
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-sm">
+    </div>
+    <div class="col-sm">
+      <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <!-- Email input -->
         <div class="form-outline mb-4">
           <span class="p-float-label">
-            <input autofocus pInputText id="username" name="username" [(ngModel)]="form.username" required #username="ngModel"
-              [ngClass]="{ 'is-invalid': f.submitted && username.errors, 'ng-touched':true }" class="form-control" />
+            <input autofocus pInputText id="username" name="username" [(ngModel)]="form.username" required
+              #username="ngModel" [ngClass]="{ 'is-invalid': f.submitted && username.errors, 'ng-touched':true }"
+              class="form-control" />
             <label htmlFor="username">Ваш логин</label>
           </span>
         </div>
@@ -26,7 +32,7 @@
         <!-- Password input -->
         <div class="form-outline mb-4">
           <span class="p-float-label">
-            <input  pInputText type="password" id="passwordInput" name="password" [(ngModel)]="form.password" required
+            <input pInputText type="password" id="passwordInput" name="password" [(ngModel)]="form.password" required
               #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }" class="form-control" />
             <label htmlFor="passwordInput">Пароль</label>
           </span>
