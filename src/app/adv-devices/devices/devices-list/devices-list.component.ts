@@ -68,6 +68,7 @@ export class DevicesListComponent implements OnInit {
       data: {
         id: device.Id,
         device: device,
+        isEdit: true,
       }
     });
 

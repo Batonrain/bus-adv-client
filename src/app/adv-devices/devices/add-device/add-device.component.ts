@@ -22,21 +22,41 @@ export class AddDeviceComponent implements OnInit {
     public citiesService: CitiesService,
     public dialogConfig: DynamicDialogConfig,
     public ref: DynamicDialogRef) {
-    //this.isEdit = this.dialogConfig.data['isEdit'];
+    this.isEdit = this.dialogConfig.data['isEdit'];
 
-    this.newDeviceForm = new FormGroup(
-      {
-        'deviceName': new FormControl('', Validators.required),
-        'deviceCity': new FormControl('', Validators.required),
-        'deviceAllocationType': new FormControl('', Validators.required),
-        'deviceRoute': new FormControl('', Validators.required),
-        'deviceMachineNumber': new FormControl('', Validators.required),
-        'deviceTechName': new FormControl('', Validators.required),
-        'deviceVersion': new FormControl('', Validators.required),
-        'deviceBucketName': new FormControl('', Validators.required),
-        'deviceBucketPrefix': new FormControl('', Validators.required),
-        'deviceTranslationUrl': new FormControl('', Validators.required),
-      });
+    if (this.isEdit) {
+      let data = this.dialogConfig.data['device'];
+      this.newDeviceForm = new FormGroup(
+        {
+          'deviceName': new FormControl(data.Name, Validators.required),
+          'deviceCity': new FormControl(data.City, Validators.required),
+          'deviceAllocationType': new FormControl(data.AllocationType, Validators.required),
+          'deviceRoute': new FormControl(data.Route, Validators.required),
+          'deviceMachineNumber': new FormControl(data.MachineNumber, Validators.required),
+          'deviceTechName': new FormControl(data.TechName, Validators.required),
+          'deviceVersion': new FormControl(data.Version, Validators.required),
+          'deviceBucketName': new FormControl(data.BucketName, Validators.required),
+          'deviceBucketPrefix': new FormControl(data.BucketPrefix, Validators.required),
+          'deviceTranslationUrl': new FormControl(data.TranslationUrl, Validators.required),
+        });
+    }
+    else {
+      this.newDeviceForm = new FormGroup(
+        {
+          'deviceName': new FormControl('', Validators.required),
+          'deviceCity': new FormControl('', Validators.required),
+          'deviceAllocationType': new FormControl('', Validators.required),
+          'deviceRoute': new FormControl('', Validators.required),
+          'deviceMachineNumber': new FormControl('', Validators.required),
+          'deviceTechName': new FormControl('', Validators.required),
+          'deviceVersion': new FormControl('', Validators.required),
+          'deviceBucketName': new FormControl('', Validators.required),
+          'deviceBucketPrefix': new FormControl('', Validators.required),
+          'deviceTranslationUrl': new FormControl('', Validators.required),
+        });
+    }
+
+
 
     // if (!this.isEdit) {
     //   this.initEditForm(this.dialogConfig.data['device'])
