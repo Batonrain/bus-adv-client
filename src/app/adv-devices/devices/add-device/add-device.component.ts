@@ -22,7 +22,10 @@ export class AddDeviceComponent implements OnInit {
     public citiesService: CitiesService,
     public dialogConfig: DynamicDialogConfig,
     public ref: DynamicDialogRef) {
-    this.isEdit = this.dialogConfig.data['isEdit'];
+    
+    if (this.dialogConfig.data != undefined) {
+      this.isEdit = this.dialogConfig.data['isEdit'];
+    }
 
     if (this.isEdit) {
       let data = this.dialogConfig.data['device'];
