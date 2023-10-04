@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card">
-        <p-table #citiesTable [value]="cities" [globalFilterFields]="['Name']" styleClass="p-datatable-striped"
+        <p-table #citiesTable [value]="cities" [globalFilterFields]="['name']" styleClass="p-datatable-striped"
             [tableStyle]="{ 'min-width': '50rem' }">
             <ng-template pTemplate="caption">
                 <div class="flex" style="display: flex!important;">
@@ -21,13 +21,13 @@
             </ng-template>
             <ng-template pTemplate="body" let-city>
                 <tr>
-                    <td>{{ city.Name }}</td>
+                    <td>{{ city.name }}</td>
                     <td>
-                        <p-button (click)="edit(city.Id, city.Name)" label="Редактировать" 
+                        <p-button (click)="edit(city.id, city.name)" label="Редактировать" 
                         styleClass="p-button-text"></p-button>
                     </td>
                     <td>
-                        <p-button (click)="delete(city.Id, city.Name)" label="Удалить"
+                        <p-button (click)="delete(city.id, city.name)" label="Удалить"
                             styleClass="p-button-danger p-button-text"></p-button>
                     </td>
                 </tr>

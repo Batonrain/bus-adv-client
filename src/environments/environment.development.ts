@@ -1,3 +1,4 @@
 export const environment = {
-    ApiBase: 'http://127.0.0.1:5000/'
+    ApiBase: 'https://localhost:7284/api/',
+    CityApi:'City'
 };

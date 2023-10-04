@@ -3,23 +3,23 @@
     <a href="#" class="navbar-brand">Рекламный кабинет</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
-        <a href="/profile" class="nav-link" *ngIf="isLoggedIn" routerLink="profile">Пользователь</a>
+        <a href="/profile" class="nav-link" routerLink="profile">Пользователь</a>
       </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
+      <li class="nav-item">
         <a href="/devices" class="nav-link" routerLink="devices">Устройства</a>
       </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
+      <li class="nav-item">
         <a href="/cities" class="nav-link" routerLink="cities">Города</a>
       </li>
     </ul>
 
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a href="/login" class="nav-link" routerLink="login">Войти</a>
       </li>
     </ul>
 
-    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <p-button styleClass="p-button-link nav-link" (click)="logout()">Выйти</p-button>
       </li>

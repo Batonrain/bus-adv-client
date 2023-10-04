@@ -72,7 +72,7 @@ export class AddDeviceComponent implements OnInit {
 
     forkJoin([cities, allocations]).subscribe({
       next: result => {
-        this.cities = result[0].cities;
+        this.cities = result[0];
         this.types_of_allocation = result[1].types_of_allocation;
       },
       error: err => {

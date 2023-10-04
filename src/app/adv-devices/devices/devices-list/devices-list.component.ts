@@ -25,15 +25,15 @@ export class DevicesListComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
 
   ngOnInit(): void {
-    this.deviceService.getDevices()
-      .subscribe({
-        next: result => {
-          this.devices = result.devices;
-        },
-        error: err => {
-          console.log(err);
-        }
-      });
+    // this.deviceService.getDevices()
+    //   .subscribe({
+    //     next: result => {
+    //       this.devices = result.devices;
+    //     },
+    //     error: err => {
+    //       console.log(err);
+    //     }
+    //   });
   }
 
   addNewDevice(): void {

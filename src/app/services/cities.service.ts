@@ -2,31 +2,34 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { City } from '../models/city.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CitiesService {
+  private baseUrl = '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.baseUrl = environment.ApiBase + environment.CityApi;
+   }
 
-  get(): Observable<any> {
-    return this.http.get(environment.ApiBase + 'cities')
+  get(): Observable<City[]> {
+    return this.http.get<City[]>(`${this.baseUrl}/GetAll`);
   }
 
-  add(body: any): Observable<any> {
-    return this.http.post(environment.ApiBase + 'add_city', body)
+  // Создать новый город
+  create(city: City): Observable<City> {
+    return this.http.post<City>(this.baseUrl, city);
   }
 
-  edit(body: any): Observable<any> {
-    return this.http.post(environment.ApiBase + 'edit_city', body)
+  // Обновить существующий город
+  update(id: number, city: City): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/${id}`, city);
   }
 
-  delete(id: string): Observable<any> {
-    return this.http.delete(environment.ApiBase + 'delete_city', {
-      params: {
-        id: id
-      }
-    })
+  // Удалить город по ID
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }

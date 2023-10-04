@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { City } from 'src/app/models/city.models';
 import { CitiesService } from 'src/app/services/cities.service';
 
 @Component({
@@ -15,11 +16,11 @@ export class AddCityComponent implements OnInit {
     public ref: DynamicDialogRef) {
     this.isEdit = this.dialogConfig.data['isEdit']
     let initCityNameValue = '';
-    console.log(this.dialogConfig.data)
 
     if (this.isEdit) {
-      this.id = this.dialogConfig.data['id']
-      initCityNameValue = this.dialogConfig.data['name']
+      this.approveButtonText = 'Сохранить';
+      this.id = this.dialogConfig.data['id'];
+      initCityNameValue = this.dialogConfig.data['name'];
     }
 
     this.cityForm = new FormGroup(
@@ -30,30 +31,31 @@ export class AddCityComponent implements OnInit {
 
   id: string = '';
   isEdit: boolean = false;
+  approveButtonText = 'Добавить'
   cityForm: FormGroup;
 
   ngOnInit(): void { }
 
   submit() {
-    const city = {
-      id: this.id,
+    let city: City = {
+      id: Number(this.id),
       name: this.cityForm.value['cityName']
     }
     if (this.isEdit) {
-      this.citiesService.edit(city)
+      this.citiesService.update(city.id, city)
         .subscribe({
           next: result => {
-            this.ref.close(result.isEdited)
+            this.ref.close(true)
           },
           error: err => {
             console.log(err);
           }
         });
     } else {
-      this.citiesService.add(city)
+      this.citiesService.create(city)
         .subscribe({
           next: result => {
-            this.ref.close(result.isAdded)
+            this.ref.close(result.name)
           },
           error: err => {
             console.log(err);

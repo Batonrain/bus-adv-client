@@ -1,3 +1,4 @@
 export const environment = {
-    ApiBase: 'http://vpn.indoortv116.ru:8000/'
+    ApiBase: 'https://localhost:7284/api/',
+    CityApi:'City'
 };

@@ -4,6 +4,7 @@ import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/a
 import { Table } from 'primeng/table';
 import { AddCityComponent } from '../add-city/add-city.component';
 import { CitiesService } from 'src/app/services/cities.service';
+import { City } from 'src/app/models/city.models';
 
 @Component({
   selector: 'app-cities-list',
@@ -18,7 +19,7 @@ export class CitiesListComponent implements OnInit {
     public confirmationService: ConfirmationService,
     public messageService: MessageService) { }
 
-  public cities: any;
+  public cities: City[] = [];
   ref: DynamicDialogRef | undefined;
 
   ngOnInit(): void {
@@ -82,7 +83,7 @@ export class CitiesListComponent implements OnInit {
       header: 'Подтверждение удаления',
       icon: 'pi pi-info-circle',
       accept: () => {
-        this.citiesService.delete(id).subscribe({
+        this.citiesService.delete(Number(id)).subscribe({
           next: result => {
             this.messageService.add(
               { severity: 'info', summary: 'Подтверждено', detail: 'Город ' + name + ' удален' });
@@ -114,7 +115,7 @@ export class CitiesListComponent implements OnInit {
   loadData(): void {
     this.citiesService.get().subscribe({
       next: result => {
-        this.cities = result.cities;
+        this.cities = result;
       },
       error: err => {
         console.log(err);
