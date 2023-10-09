@@ -32,6 +32,8 @@ import { TabViewModule } from 'primeng/tabview';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AllocationsListComponent } from './adv-devices/allocations/allocations-list/allocations-list.component';
+import { TechniciansListComponent } from './adv-devices/technicians/technicians-list/technicians-list.component';
+import { AddTechniciansComponent } from './adv-devices/technicians/add-technicians/add-technicians.component';
 
 
 @NgModule({
@@ -47,6 +49,8 @@ import { AllocationsListComponent } from './adv-devices/allocations/allocations-
     AddCityComponent,
     AddAllocationComponent,
     AllocationsListComponent,
+    TechniciansListComponent,
+    AddTechniciansComponent,
   ],
   imports: [
     BrowserModule,
