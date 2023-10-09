@@ -1,36 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
-import { AddCityComponent } from '../add-city/add-city.component';
-import { CitiesService } from 'src/app/services/cities.service';
-import { City } from 'src/app/models/city.models';
+import { AllocationsService } from 'src/app/services/allocations.service';
+import { AllocationType } from 'src/app/models/allocation-type.models';
+import { AddAllocationComponent } from '../add-allocation/add-allocation.component';
 
 @Component({
-  selector: 'app-cities-list',
-  templateUrl: './cities-list.component.html',
-  styleUrls: ['./cities-list.component.css'],
+  selector: 'app-allocations-list',
+  templateUrl: './allocations-list.component.html',
+  styleUrls: ['./allocations-list.component.css'],
   providers: [DialogService, MessageService, ConfirmationService]
 })
-export class CitiesListComponent implements OnInit {
+export class AllocationsListComponent {
   constructor(
-    public citiesService: CitiesService,
+    public allocationsService: AllocationsService,
     public dialogService: DialogService,
     public confirmationService: ConfirmationService,
     public messageService: MessageService) { }
 
-  public cities: City[] = [];
+  public allocationTypes: AllocationType[] = [];
   ref: DynamicDialogRef | undefined;
 
   ngOnInit(): void {
     this.loadData();
   }
 
-  addCity(): void {
-    this.ref = this.dialogService.open(AddCityComponent, {
-      header: 'Добавление нового города',
+  addAllocationType(): void {
+    this.ref = this.dialogService.open(AddAllocationComponent, {
+      header: 'Добавление нового типа размещения',
       width: '50%',
-      height: '50%',
+      height: '65%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
@@ -44,16 +44,16 @@ export class CitiesListComponent implements OnInit {
     this.ref.onClose.subscribe((result: boolean) => {
       if (result) {
         this.loadData();
-        this.messageService.add({ severity: 'success', summary: 'Устройство успешно добавлено' });
+        this.messageService.add({ severity: 'success', summary: 'Тип раземещения успешно добавлен' });
       }
     });
   }
 
   edit(id: string, name: string, shortName: string): void {
-    this.ref = this.dialogService.open(AddCityComponent, {
-      header: 'Редактирование города',
+    this.ref = this.dialogService.open(AddAllocationComponent, {
+      header: 'Редактирование типа размещения',
       width: '50%',
-      height: '50%',
+      height: '65%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
@@ -62,32 +62,32 @@ export class CitiesListComponent implements OnInit {
       data: {
         isEdit: true,
         id: id,
-        cityName: name,
-        cityShortName: shortName
+        allocationType: name,
+        shortAllocationType: shortName
       }
     });
 
     this.ref.onClose.subscribe((result: boolean) => {
       if (result) {
         this.loadData();
-        this.messageService.add({ severity: 'success', summary: 'Устройство успешно добавлено' });
+        this.messageService.add({ severity: 'success', summary: 'Тип размещения успешно изменен' });
       }
     });
-   }
+  }
 
   delete(id: string, name: string): void {
     const city = {
       Id: id
     };
     this.confirmationService.confirm({
-      message: 'Вы уверены, что хотите удалить город <b>' + name + '</b>?',
+      message: 'Вы уверены, что хотите удалить тип размещения <b>' + name + '</b>?',
       header: 'Подтверждение удаления',
       icon: 'pi pi-info-circle',
       accept: () => {
-        this.citiesService.delete(Number(id)).subscribe({
+        this.allocationsService.delete(Number(id)).subscribe({
           next: result => {
             this.messageService.add(
-              { severity: 'info', summary: 'Подтверждено', detail: 'Город ' + name + ' удален' });
+              { severity: 'info', summary: 'Подтверждено', detail: 'Тип размещения ' + name + ' удален' });
             this.loadData();
           },
           error: err => {
@@ -98,10 +98,10 @@ export class CitiesListComponent implements OnInit {
       reject: (type: ConfirmEventType) => {
         switch (type) {
           case ConfirmEventType.REJECT:
-            this.messageService.add({ severity: 'error', summary: 'Отказ', detail: 'Город не был удален' });
+            this.messageService.add({ severity: 'error', summary: 'Отказ', detail: 'Тип размещения не был удален' });
             break;
           case ConfirmEventType.CANCEL:
-            this.messageService.add({ severity: 'warn', summary: 'Отмена', detail: 'Вы отменили удаление города' });
+            this.messageService.add({ severity: 'warn', summary: 'Отмена', detail: 'Вы отменили удаление типа размещения' });
             break;
         }
       },
@@ -114,9 +114,10 @@ export class CitiesListComponent implements OnInit {
   }
 
   loadData(): void {
-    this.citiesService.get().subscribe({
+    this.allocationsService.get().subscribe({
       next: result => {
-        this.cities = result;
+        console.log(result);
+        this.allocationTypes = result;
       },
       error: err => {
         console.log(err);

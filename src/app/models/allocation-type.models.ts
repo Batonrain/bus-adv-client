@@ -1,4 +1,4 @@
-export interface City {
+export interface AllocationType {
     id: number;
     name: string;
     shortName: string;

@@ -31,6 +31,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TabViewModule } from 'primeng/tabview';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { AllocationsListComponent } from './adv-devices/allocations/allocations-list/allocations-list.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     AddDeviceComponent,
     AddCityComponent,
     AddAllocationComponent,
+    AllocationsListComponent,
   ],
   imports: [
     BrowserModule,

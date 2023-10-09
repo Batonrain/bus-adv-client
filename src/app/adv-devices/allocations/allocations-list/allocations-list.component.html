@@ -1,12 +1,12 @@
 <div class="card">
     <div class="card">
-        <p-table #citiesTable [value]="cities" [globalFilterFields]="['name']" styleClass="p-datatable-striped"
+        <p-table #allocationTypeTable [value]="allocationTypes" [globalFilterFields]="['name']" styleClass="p-datatable-striped"
             [tableStyle]="{ 'min-width': '50rem' }">
             <ng-template pTemplate="caption">
                 <div class="flex" style="display: flex!important;">
-                    <button pButton label="Добавить" (click)="addCity()"></button>
+                    <button pButton label="Добавить" (click)="addAllocationType()"></button>
                     <span class="p-input-icon-left ml-auto" style="margin-left: auto!important;">
-                        <input pInputText type="text" (input)="filter(citiesTable, $event.target)"
+                        <input pInputText type="text" (input)="filter(allocationTypeTable, $event.target)"
                             placeholder="Поиск" />
                     </span>
 
@@ -20,16 +20,16 @@
                     <th></th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-city>
+            <ng-template pTemplate="body" let-allocationType>
                 <tr>
-                    <td>{{ city.name }}</td>
-                    <td>{{ city.shortName }}</td>
+                    <td>{{ allocationType.name }}</td>
+                    <td>{{ allocationType.shortName }}</td>
                     <td>
-                        <p-button (click)="edit(city.id, city.name, city.shortName)" label="Редактировать" 
+                        <p-button (click)="edit(allocationType.id, allocationType.name, allocationType.shortName)" label="Редактировать" 
                         styleClass="p-button-text"></p-button>
                     </td>
                     <td>
-                        <p-button (click)="delete(city.id, city.name)" label="Удалить"
+                        <p-button (click)="delete(allocationType.id, allocationType.name)" label="Удалить"
                             styleClass="p-button-danger p-button-text"></p-button>
                     </td>
                 </tr>

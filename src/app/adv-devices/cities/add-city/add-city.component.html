@@ -8,6 +8,14 @@
         </div>
     </div>
     <div class="form-group">
+        <label>Аббревиатура</label>
+        <input pInputText class="form-control" name="cityShortName" formControlName="cityShortName" />
+        <div class="alert alert-danger"
+            *ngIf="cityForm.controls['cityShortName'].invalid && cityForm.controls['cityShortName'].touched">
+            Не указана аббревиатура
+        </div>
+    </div>
+    <div class="form-group">
         <button pButton class="btn btn-default" [disabled]="cityForm.invalid">
             {{approveButtonText}}
         </button>

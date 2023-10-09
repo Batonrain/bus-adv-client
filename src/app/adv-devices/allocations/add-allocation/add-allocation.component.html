@@ -1,1 +1,23 @@
-<p>add-allocation works!</p>
+<form [formGroup]="allocationTypeForm" novalidate (ngSubmit)="submit()">
+    <div class="form-group">
+        <label>Название типа размещения</label>
+        <input pInputText class="form-control" name="allocationType" formControlName="allocationType" />
+        <div class="alert alert-danger"
+            *ngIf="allocationTypeForm.controls['allocationType'].invalid && allocationTypeForm.controls['allocationType'].touched">
+            Не указано название типа размещения
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Аббревиатура</label>
+        <input pInputText class="form-control" name="shortAllocationType" formControlName="shortAllocationType" />
+        <div class="alert alert-danger"
+            *ngIf="allocationTypeForm.controls['shortAllocationType'].invalid && allocationTypeForm.controls['shortAllocationType'].touched">
+            Не указана аббревиатура
+        </div>
+    </div>
+    <div class="form-group">
+        <button pButton class="btn btn-default" [disabled]="allocationTypeForm.invalid">
+            {{approveButtonText}}
+        </button>
+    </div>
+</form>

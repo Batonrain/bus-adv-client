@@ -16,16 +16,19 @@ export class AddCityComponent implements OnInit {
     public ref: DynamicDialogRef) {
     this.isEdit = this.dialogConfig.data['isEdit']
     let initCityNameValue = '';
+    let initShortCityNameValue = '';
 
     if (this.isEdit) {
       this.approveButtonText = 'Сохранить';
       this.id = this.dialogConfig.data['id'];
-      initCityNameValue = this.dialogConfig.data['name'];
+      initCityNameValue = this.dialogConfig.data['cityName'];
+      initShortCityNameValue = this.dialogConfig.data['cityShortName'];
     }
 
     this.cityForm = new FormGroup(
       {
         'cityName': new FormControl(initCityNameValue, Validators.required),
+        'cityShortName': new FormControl(initShortCityNameValue, Validators.required),
       });
   }
 
@@ -39,7 +42,8 @@ export class AddCityComponent implements OnInit {
   submit() {
     let city: City = {
       id: Number(this.id),
-      name: this.cityForm.value['cityName']
+      name: this.cityForm.value['cityName'],
+      shortName: this.cityForm.value['cityShortName']
     }
     if (this.isEdit) {
       this.citiesService.update(city.id, city)

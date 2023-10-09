@@ -4,12 +4,14 @@ import { LoginComponent } from './auth/login/login.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { DevicesListComponent } from './adv-devices/devices/devices-list/devices-list.component';
 import { CitiesListComponent } from './adv-devices/cities/cities-list/cities-list.component';
+import { AllocationsListComponent } from './adv-devices/allocations/allocations-list/allocations-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'devices', component: DevicesListComponent },
   { path: 'cities', component: CitiesListComponent},
+  { path: 'allocations', component: AllocationsListComponent},
   { path: '', component: CitiesListComponent, outlet: 'adminbar' },
   { path: '', redirectTo: 'devices', pathMatch: 'full' }
 ];
