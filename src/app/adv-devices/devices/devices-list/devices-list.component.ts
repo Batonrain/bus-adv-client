@@ -4,9 +4,9 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { VideoStreamComponent } from '../video-stream/video-stream.component';
 import { Table } from 'primeng/table';
 import { FilesListComponent } from '../files-list/files-list.component';
-import { AddDeviceComponent } from '../add-device/add-device.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CitiesService } from 'src/app/services/cities.service';
+import { Device } from 'src/app/models/device.models';
 
 @Component({
   selector: 'app-devices-list',
@@ -21,62 +21,20 @@ export class DevicesListComponent implements OnInit {
     public dialogService: DialogService,
     public messageService: MessageService) { }
 
-  public devices: any
+  public devices: Device[] = [];
   ref: DynamicDialogRef | undefined;
 
   ngOnInit(): void {
-    // this.deviceService.getDevices()
-    //   .subscribe({
-    //     next: result => {
-    //       this.devices = result.devices;
-    //     },
-    //     error: err => {
-    //       console.log(err);
-    //     }
-    //   });
-  }
-
-  addNewDevice(): void {
-    this.ref = this.dialogService.open(AddDeviceComponent, {
-      header: 'Добавление нового устройства',
-      width: '50%',
-      height: '80%',
-      contentStyle: { overflow: 'auto' },
-      baseZIndex: 10000,
-      maximizable: true,
-      closeOnEscape: true,
-      closable: true,
-    });
-
-    this.ref.onClose.subscribe((result: boolean) => {
-      if (result) {
-        this.messageService.add({ severity: 'success', summary: 'Устройство успешно добавлено' });
-      }
-    });
-  }
-
-  editDevice(device: any): void {
-    this.ref = this.dialogService.open(AddDeviceComponent, {
-      header: 'Редактирование нового устройства',
-      width: '50%',
-      height: '80%',
-      contentStyle: { overflow: 'auto' },
-      baseZIndex: 10000,
-      maximizable: true,
-      closeOnEscape: true,
-      closable: true,
-      data: {
-        id: device.Id,
-        device: device,
-        isEdit: true,
-      }
-    });
-
-    this.ref.onClose.subscribe((result: boolean) => {
-      if (result) {
-        this.messageService.add({ severity: 'success', summary: 'Устройство успешно обновлено' });
-      }
-    });
+    this.deviceService.get()
+      .subscribe({
+        next: result => {
+          this.devices = result;
+          console.log(this.devices);
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
   }
 
   filter(table: Table, text: any): void {
@@ -114,10 +72,17 @@ export class DevicesListComponent implements OnInit {
     table.clear();
   }
 
-  getSeverity(status: any): string {
-    if (status.isOnline == true) {
+  getSeverity(isOnline: boolean): string {
+    if (isOnline) {
       return 'success'
     }
     return 'danger'
+  }
+
+  getStatusText(isOnline: boolean): string {
+    if (isOnline) {
+      return 'Онлайн'
+    }
+    return 'Оффлайн'
   }
 }

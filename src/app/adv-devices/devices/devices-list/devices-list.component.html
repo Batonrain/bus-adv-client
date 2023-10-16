@@ -1,10 +1,9 @@
 <div class="card">
     <p-table #devicesTable [value]="devices"
-        [globalFilterFields]="['Name', 'City', 'Technician', 'Status.text']"
+        [globalFilterFields]="['name', 'city.name', 'technician.firstName', 'technician.lastName']"
         styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="caption">
             <div class="flex" style="display: flex!important;">
-                <button pButton label="Добавить" (click)="addNewDevice()"></button>
                 <span class="p-input-icon-left ml-auto" style="margin-left: auto!important;">
                     <input pInputText type="text" (input)="filter(devicesTable, $event.target)"
                         placeholder="Поиск" />
@@ -16,26 +15,27 @@
             <tr>
                 <th>Название</th>
                 <th>Статус</th>
+                <th>Маршрут</th>
+                <th>Номер устройства</th>
                 <th>Город</th>
                 <th>Тип размещения</th>
                 <th>Техник</th>
-                <th>Версия</th>
                 <th>Хранилище</th>
                 <th>Путь</th>
                 <th>Трансляция</th>
-                <th></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-device>
             <tr>
-                <td>{{ device.Name }}</td>
+                <td>{{ device.name }}</td>
                 <td>
-                    <p-tag [value]="device.Status.text" [severity]="getSeverity(device.Status)"></p-tag>
+                    <p-tag [value]="getStatusText(device.isOnline)" [severity]="getSeverity(device.isOnline)"></p-tag>
                 </td>
-                <td>{{ device.City }}</td>
-                <td>{{ device.AllocationType }}</td>
-                <td>{{ device.Technician }}</td>
-                <td>{{ device.Version }}</td>
+                <td>{{ device.routeNumber}}</td>
+                <td>{{ device.deviceId }}</td>
+                <td>{{ device.city.name }}</td>
+                <td>{{ device.allocationType.name }}</td>
+                <td>{{ device.technician.firstName }}</td>
                 <td>
                     <p-button (click)="showFiles(device.Name, device.Bucket, device.Prefix)"
                     styleClass="p-button-text" label="Смотреть"></p-button>
@@ -44,10 +44,6 @@
                 <td>
                     <p-button (click)="showTranslation(device.TranslationUrl)"
                     styleClass="p-button-text" label="Смотреть"></p-button>
-                </td>
-                <td>
-                    <p-button (click)="editDevice(device)"
-                    styleClass="p-button-text" label="Редактировать"></p-button>
                 </td>
             </tr>
         </ng-template>

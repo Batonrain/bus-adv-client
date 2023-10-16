@@ -13,7 +13,6 @@ import { LoginComponent } from './auth/login/login.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { VideoStreamComponent } from './adv-devices/devices/video-stream/video-stream.component';
 import { FilesListComponent } from './adv-devices/devices/files-list/files-list.component';
-import { AddDeviceComponent } from './adv-devices/devices/add-device/add-device.component';
 import { AddCityComponent } from './adv-devices/cities/add-city/add-city.component';
 import { AddAllocationComponent } from './adv-devices/allocations/add-allocation/add-allocation.component';
 
@@ -45,7 +44,6 @@ import { AddTechniciansComponent } from './adv-devices/technicians/add-technicia
     ProfileComponent,
     VideoStreamComponent,
     FilesListComponent,
-    AddDeviceComponent,
     AddCityComponent,
     AddAllocationComponent,
     AllocationsListComponent,
