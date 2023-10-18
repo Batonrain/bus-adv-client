@@ -18,12 +18,11 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         script: |
           cd /
-          cd /projects/AdvertisingBoard/client
-          git clone https://github.com/Batonrain/bus-adv-client.git
-          cd bus-adv-client
-          ng dist
-          # git pull origin main
-          # rm rf dist/*
+          cd /projects/AdvertisingBoard/client/bus-adv-client
+          rm rf dist/*
+          git pull origin master
+          npm install
+          ng build
           
 
 
