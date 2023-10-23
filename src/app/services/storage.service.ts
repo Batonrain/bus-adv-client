@@ -1,34 +1,53 @@
 import { Injectable } from '@angular/core';
+import jwt_decode from "jwt-decode";
+import { User } from '../models/user.model';
 
-const USER_KEY = 'auth-user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
-
+  TOKEN_NAME: string = 'token';
+  ROLES: string = 'roles';
+  EXPIRATION: string = 'expiration';
+  USER_NAME: string = 'userName';
   constructor() { }
 
   clean(): void {
-    window.sessionStorage.clear();
+    window.localStorage.clear();
   }
 
-  public saveUser(user: any): void {
-    window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+  public saveUserInfo(saveUserInfo: User): void {
+    window.localStorage.removeItem(this.TOKEN_NAME);
+    window.localStorage.setItem(this.TOKEN_NAME, saveUserInfo.token);
+    
+    window.localStorage.removeItem(this.ROLES);
+    window.localStorage.setItem(this.ROLES, JSON.stringify(saveUserInfo.roles));
+
+    window.localStorage.removeItem(this.EXPIRATION);
+    window.localStorage.setItem(this.EXPIRATION, JSON.stringify(saveUserInfo.expiration));
   }
 
-  public getUser(): any {
-    const user = window.sessionStorage.getItem(USER_KEY);
+  public getUser(): string {
+    const user = window.localStorage.getItem(this.USER_NAME);
     if (user) {
       return JSON.parse(user);
     }
 
-    return {};
+    return "";
+  }
+
+  public getRoles(): string[] {
+    const roles = window.localStorage.getItem(this.ROLES);
+    if (roles) {
+      return JSON.parse(roles);
+    }
+
+    return [];
   }
 
   public isLoggedIn(): boolean {
-    const user = window.sessionStorage.getItem(USER_KEY);
+    const user = window.localStorage.getItem(this.TOKEN_NAME);
     if (user) {
       return true;
     }

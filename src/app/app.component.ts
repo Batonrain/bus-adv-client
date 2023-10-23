@@ -20,20 +20,20 @@ export class AppComponent {
   ngOnInit(): void {
     this.isLoggedIn = this.storageService.isLoggedIn();
 
-    if (this.isLoggedIn) {
-      const user = this.storageService.getUser().user;
+    // if (this.isLoggedIn) {
+    //   const user = this.storageService.getUser().user;
 
-      switch(user.role){
-        case "Admin":
-          this.showAdminBoard = true;
-          break;
-        case "Moderator":
-          this.showModeratorBoard = true;
-          break; 
-        }
+    //   switch(user.role){
+    //     case "Admin":
+    //       this.showAdminBoard = true;
+    //       break;
+    //     case "Moderator":
+    //       this.showModeratorBoard = true;
+    //       break; 
+    //     }
       
-      this.username = user.username;
-    }
+    //   this.username = user.username;
+    // }
   }
 
   logout(): void {

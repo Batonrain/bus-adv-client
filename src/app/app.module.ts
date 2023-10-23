@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+// Внутренние компоненты
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CitiesListComponent } from './adv-devices/cities/cities-list/cities-list.component';
@@ -15,7 +16,10 @@ import { VideoStreamComponent } from './adv-devices/devices/video-stream/video-s
 import { FilesListComponent } from './adv-devices/devices/files-list/files-list.component';
 import { AddCityComponent } from './adv-devices/cities/add-city/add-city.component';
 import { AddAllocationComponent } from './adv-devices/allocations/add-allocation/add-allocation.component';
-
+import { AllocationsListComponent } from './adv-devices/allocations/allocations-list/allocations-list.component';
+import { TechniciansListComponent } from './adv-devices/technicians/technicians-list/technicians-list.component';
+import { AddTechniciansComponent } from './adv-devices/technicians/add-technicians/add-technicians.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 // PrimeNG
 import { ToastModule } from 'primeng/toast';
@@ -30,10 +34,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TabViewModule } from 'primeng/tabview';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { AllocationsListComponent } from './adv-devices/allocations/allocations-list/allocations-list.component';
-import { TechniciansListComponent } from './adv-devices/technicians/technicians-list/technicians-list.component';
-import { AddTechniciansComponent } from './adv-devices/technicians/add-technicians/add-technicians.component';
-
 
 @NgModule({
   declarations: [
@@ -69,7 +69,13 @@ import { AddTechniciansComponent } from './adv-devices/technicians/add-technicia
     TabMenuModule,
     ConfirmDialogModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

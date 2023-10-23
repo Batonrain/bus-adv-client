@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,13 +23,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService, 
     private storageService: StorageService,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    if (this.storageService.isLoggedIn()) {
-      this.isLoggedIn = true;
-      this.roles = this.storageService.getUser().roles;
-    }
+    
   }
 
   onSubmit(): void {
@@ -37,13 +36,10 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(username, password).subscribe({
       next: data => {
-        console.log("LOGIN SUCCESS", data)
-        this.storageService.saveUser(data);
-
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.storageService.getUser().roles;
-        this.reloadPage();
+        console.log("login", data);
+        this.storageService.saveUserInfo(data);
+        console.log(this.storageService.getRoles())
+        this.router.navigate(["/devices"]);
       },
       error: err => {
         console.log("Ошибка входа");

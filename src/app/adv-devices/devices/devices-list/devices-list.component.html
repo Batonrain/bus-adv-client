@@ -21,7 +21,6 @@
                 <th>Тип размещения</th>
                 <th>Техник</th>
                 <th>Хранилище</th>
-                <th>Путь</th>
                 <th>Трансляция</th>
             </tr>
         </ng-template>
@@ -40,7 +39,6 @@
                     <p-button (click)="showFiles(device.Name, device.Bucket, device.Prefix)"
                     styleClass="p-button-text" label="Смотреть"></p-button>
                 </td>
-                <td>{{ device.Route }}</td>
                 <td>
                     <p-button (click)="showTranslation(device.TranslationUrl)"
                     styleClass="p-button-text" label="Смотреть"></p-button>

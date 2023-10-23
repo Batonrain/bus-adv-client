@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
 
 
 
@@ -13,16 +14,17 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-
+  private baseUrl = '';
   constructor(private http: HttpClient) {
+    this.baseUrl = environment.ApiBase + environment.UserApi;
   }
-    
-  login(username: string, password: string): Observable<any> {
-    return this.http.post(
-      environment.ApiBase + 'login',
+
+  login(username: string, password: string): Observable<User> {
+    return this.http.post<User>(
+      this.baseUrl + '/login',
       {
-        username: username,
-        password: password,
+        Username: username,
+        Password: password,
       },
       httpOptions
     );
@@ -30,6 +32,6 @@ export class AuthService {
 
   logout(): Observable<any> {
     console.log("logout")
-    return this.http.post(environment.ApiBase + 'logout', { }, httpOptions);
+    return this.http.post(environment.ApiBase + 'logout', {}, httpOptions);
   }
 }
