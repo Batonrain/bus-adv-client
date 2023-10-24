@@ -5,10 +5,9 @@
         <ng-template pTemplate="caption">
             <div class="flex" style="display: flex!important;">
                 <span class="p-input-icon-left ml-auto" style="margin-left: auto!important;">
-                    <input pInputText type="text" (input)="filter(devicesTable, $event.target)"
-                        placeholder="Поиск" />
+                    <input pInputText type="text" (input)="filter(devicesTable, $event.target)" placeholder="Поиск" />
                 </span>
-                
+
             </div>
         </ng-template>
         <ng-template pTemplate="header">
@@ -26,7 +25,9 @@
         </ng-template>
         <ng-template pTemplate="body" let-device>
             <tr>
-                <td>{{ device.name }}</td>
+                <td>
+                    <p-button (click)="showChangeNetName(device.name)" styleClass="p-button-text">{{ getShortName(device.name) }}</p-button>
+                </td>
                 <td>
                     <p-tag [value]="getStatusText(device.isOnline)" [severity]="getSeverity(device.isOnline)"></p-tag>
                 </td>
@@ -36,12 +37,12 @@
                 <td>{{ device.allocationType.name }}</td>
                 <td>{{ device.technician.firstName }}</td>
                 <td>
-                    <p-button (click)="showFiles(device.Name, device.Bucket, device.Prefix)"
-                    styleClass="p-button-text" label="Смотреть"></p-button>
+                    <p-button (click)="showFiles(device.Name, device.Bucket, device.Prefix)" styleClass="p-button-text"
+                        label="Смотреть"></p-button>
                 </td>
                 <td>
-                    <p-button (click)="showTranslation(device.TranslationUrl)"
-                    styleClass="p-button-text" label="Смотреть"></p-button>
+                    <p-button (click)="showTranslation(device.TranslationUrl)" styleClass="p-button-text"
+                        label="Смотреть"></p-button>
                 </td>
             </tr>
         </ng-template>

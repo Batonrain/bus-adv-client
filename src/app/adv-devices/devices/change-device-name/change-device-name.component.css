@@ -1,0 +1,32 @@
+.input-group {
+    display: flex;
+    gap: 5px; /* Промежуток между input'ами */
+}
+
+.single-input {
+    width: 20px;
+    text-align: center;
+    margin-right: 5px; /* Добавляет небольшой отступ между инпутами */
+    border: 1px solid #ccc;
+    padding: 5px 0;
+}
+
+.number-input {
+    width: 60px;
+    text-align: center;
+    margin-right: 5px; /* Добавляет небольшой отступ между инпутами */
+    border: 1px solid #ccc;
+    padding: 5px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Выравнивает дочерние элементы по центру */
+}
+
+.change-name-div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}

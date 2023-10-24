@@ -7,6 +7,7 @@ import { FilesListComponent } from '../files-list/files-list.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CitiesService } from 'src/app/services/cities.service';
 import { Device } from 'src/app/models/device.models';
+import { ChangeDeviceNameComponent } from '../change-device-name/change-device-name.component';
 
 @Component({
   selector: 'app-devices-list',
@@ -66,6 +67,23 @@ export class DevicesListComponent implements OnInit {
         url: url
       }
     });
+  }
+
+  showChangeNetName(name: string):void{
+    this.ref = this.dialogService.open(ChangeDeviceNameComponent, {
+      header: 'Изменить сетевое имя ',
+      width: '30%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: false,
+      data: {
+        currentName: name
+      }
+    });
+  }
+
+  getShortName(name:string): string{
+    return name.replace('.local', '');
   }
 
   clear(table: Table) {

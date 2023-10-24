@@ -1,0 +1,26 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div>
+        <div class="change-name-div">
+            <label>Старое:</label>
+            <div class="input-group">
+                <input pInputText type="text" class="single-input" formControlName="oldPart1" >
+                <input pInputText type="text" class="single-input" formControlName="oldPart2" >
+                <input pInputText type="text" class="number-input" formControlName="oldPart3" >
+                <input pInputText type="text" class="number-input" formControlName="oldPart4" >
+            </div>
+        </div>
+
+        <div class="change-name-div">
+            <label>Новое:</label>
+            <div class="input-group">
+                <input pInputText type="text" class="single-input" formControlName="newPart1" >
+                <input pInputText type="text" class="single-input" formControlName="newPart2" >
+                <input pInputText type="text" class="number-input" formControlName="newPart3">
+                <input pInputText type="text" class="number-input" formControlName="newPart4" >
+            </div>
+        </div>
+    </div>
+    <p-button type="submit">Подтвердить изменение</p-button>
+
+</form>

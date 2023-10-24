@@ -34,6 +34,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TabViewModule } from 'primeng/tabview';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ChangeDeviceNameComponent } from './adv-devices/devices/change-device-name/change-device-name.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     AllocationsListComponent,
     TechniciansListComponent,
     AddTechniciansComponent,
+    ChangeDeviceNameComponent,
   ],
   imports: [
     BrowserModule,
