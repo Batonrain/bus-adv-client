@@ -27,9 +27,9 @@ export class DevicesService {
     return this.http.put<void>(`${this.baseUrl}/${id}`, device);
   }
 
-  updateNetName(model: ChangeDeviceNetNameModel): Observable<void> {
+  updateNetName(model: ChangeDeviceNetNameModel): Observable<boolean> {
     console.log(`${this.baseUrl}/ChangeDeviceName`);
-    return this.http.post<void>(`${this.baseUrl}/ChangeDeviceName`, model);
+    return this.http.post<boolean>(`${this.baseUrl}/ChangeDeviceName`, model);
   }
 
   delete(id: number): Observable<void> {

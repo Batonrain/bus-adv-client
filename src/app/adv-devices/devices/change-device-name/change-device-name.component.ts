@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AllocationType } from 'src/app/models/allocation-type.models';
 import { ChangeDeviceNetNameModel } from 'src/app/models/change-device-net-name.models';
 import { City } from 'src/app/models/city.models';
@@ -20,9 +20,12 @@ export class ChangeDeviceNameComponent implements OnInit {
   public cities: City[] = [];
   public allocationTypes: AllocationType[] = [];
 
+  buttonDisabled: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private dialogService: DynamicDialogConfig,
+    private ref: DynamicDialogRef,
     private deviceService: DevicesService,
     private citiesService: CitiesService,
     private allocationsService: AllocationsService) { }
@@ -47,6 +50,7 @@ export class ChangeDeviceNameComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
+      this.buttonDisabled = true;
       console.log(this.form.value)
       console.log(this.cleanedName)
       const newName = `${this.form.value.newPart1.shortName}-${this.form.value.newPart2.shortName}-${this.form.value.newPart3}-${this.form.value.newPart4}`;
@@ -56,9 +60,11 @@ export class ChangeDeviceNameComponent implements OnInit {
       }
       this.deviceService.updateNetName(model).subscribe({
         next: result => {
-          console.log(result);
+          console.log("result", result);
+          this.ref.close(true)
         },
         error: err => {
+          this.buttonDisabled = true;
           console.log(err);
         }
       });

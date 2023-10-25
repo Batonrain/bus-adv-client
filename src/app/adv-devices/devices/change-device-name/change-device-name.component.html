@@ -1,6 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
     <div>
+        <p>Внимание! Процесс изменения имени устройства может занимать около одной минуты.</p>
         <div class="change-name-div">
             <label>Старое:</label>
             <div class="input-group">
@@ -23,6 +24,6 @@
             </div>
         </div>
     </div>
-    <p-button [disabled]="!form.valid" type="submit">Подтвердить изменение</p-button>
+    <p-button [disabled]="!form.valid || buttonDisabled" type="submit">Подтвердить изменение</p-button>
 
 </form>

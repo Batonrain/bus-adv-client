@@ -26,16 +26,7 @@ export class DevicesListComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
 
   ngOnInit(): void {
-    this.deviceService.get()
-      .subscribe({
-        next: result => {
-          this.devices = result;
-          console.log(this.devices);
-        },
-        error: err => {
-          console.log(err);
-        }
-      });
+    this.loadData();
   }
 
   filter(table: Table, text: any): void {
@@ -69,7 +60,7 @@ export class DevicesListComponent implements OnInit {
     });
   }
 
-  showChangeNetName(name: string):void{
+  showChangeNetName(name: string): void {
     this.ref = this.dialogService.open(ChangeDeviceNameComponent, {
       header: 'Изменить сетевое имя ',
       width: '30%',
@@ -80,9 +71,16 @@ export class DevicesListComponent implements OnInit {
         currentName: name
       }
     });
+
+    this.ref.onClose.subscribe((result: boolean) => {
+      if (result) {
+        this.loadData();
+        this.messageService.add({ severity: 'success', summary: 'Имя устройства успешно изменено' });
+      }
+    });
   }
 
-  getShortName(name:string): string{
+  getShortName(name: string): string {
     return name.replace('.local', '');
   }
 
@@ -102,5 +100,18 @@ export class DevicesListComponent implements OnInit {
       return 'Онлайн'
     }
     return 'Оффлайн'
+  }
+
+  loadData(): void {
+    this.deviceService.get()
+      .subscribe({
+        next: result => {
+          this.devices = result;
+          console.log(this.devices);
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
   }
 }
