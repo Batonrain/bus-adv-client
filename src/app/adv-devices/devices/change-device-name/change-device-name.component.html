@@ -14,13 +14,15 @@
         <div class="change-name-div">
             <label>Новое:</label>
             <div class="input-group">
-                <input pInputText type="text" class="single-input" formControlName="newPart1" >
-                <input pInputText type="text" class="single-input" formControlName="newPart2" >
+                <!-- <input pInputText type="text" class="single-input" formControlName="newPart1" >
+                <input pInputText type="text" class="single-input" formControlName="newPart2" > -->
+                <p-dropdown formControlName="newPart1" [options]="cities" optionLabel="name"></p-dropdown>
+                <p-dropdown formControlName="newPart2" [options]="allocationTypes" optionLabel="name"></p-dropdown>
                 <input pInputText type="text" class="number-input" formControlName="newPart3">
                 <input pInputText type="text" class="number-input" formControlName="newPart4" >
             </div>
         </div>
     </div>
-    <p-button type="submit">Подтвердить изменение</p-button>
+    <p-button [disabled]="!form.valid" type="submit">Подтвердить изменение</p-button>
 
 </form>

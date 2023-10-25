@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Device } from '../models/device.models';
+import { ChangeDeviceNetNameModel } from '../models/change-device-net-name.models';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,9 @@ export class DevicesService {
     return this.http.put<void>(`${this.baseUrl}/${id}`, device);
   }
 
-  updateNetName(id: number, device: Device): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/ChangeDeviceName`, device);
+  updateNetName(model: ChangeDeviceNetNameModel): Observable<void> {
+    console.log(`${this.baseUrl}/ChangeDeviceName`);
+    return this.http.post<void>(`${this.baseUrl}/ChangeDeviceName`, model);
   }
 
   delete(id: number): Observable<void> {

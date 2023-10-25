@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { AllocationType } from 'src/app/models/allocation-type.models';
+import { ChangeDeviceNetNameModel } from 'src/app/models/change-device-net-name.models';
+import { City } from 'src/app/models/city.models';
+import { AllocationsService } from 'src/app/services/allocations.service';
+import { CitiesService } from 'src/app/services/cities.service';
 import { DevicesService } from 'src/app/services/devices.service';
 
 @Component({
@@ -11,16 +16,22 @@ import { DevicesService } from 'src/app/services/devices.service';
 export class ChangeDeviceNameComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
+  cleanedName: string = '';
+  public cities: City[] = [];
+  public allocationTypes: AllocationType[] = [];
 
   constructor(
     private fb: FormBuilder,
     private dialogService: DynamicDialogConfig,
-    private deviceService: DevicesService) { }
+    private deviceService: DevicesService,
+    private citiesService: CitiesService,
+    private allocationsService: AllocationsService) { }
 
   ngOnInit() {
-    console.log(this.dialogService.data);
-    const cleanedInput = this.dialogService.data.currentName.replace('.local', '');
-    const parts = cleanedInput.split('-');
+    this.loadCities();
+    this.loadAllocations();
+    this.cleanedName = this.dialogService.data.currentName.replace('.local', '');
+    const parts = this.cleanedName.split('-');
     console.log(parts);
     this.form = this.fb.group({
       oldPart1: [{value: parts[0], disabled: true}],
@@ -36,9 +47,44 @@ export class ChangeDeviceNameComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      const oldName = `${this.form.value.oldPart1}-${this.form.value.oldPart2}-${this.form.value.oldPart3}-${this.form.value.oldPart4}`;
-      const newName = `${this.form.value.newPart1}-${this.form.value.newPart2}-${this.form.value.newPart3}-${this.form.value.newPart4}`;
-      console.log(`Старое имя: ${oldName}, Новое имя: ${newName}`);
+      console.log(this.form.value)
+      console.log(this.cleanedName)
+      const newName = `${this.form.value.newPart1.shortName}-${this.form.value.newPart2.shortName}-${this.form.value.newPart3}-${this.form.value.newPart4}`;
+      let model: ChangeDeviceNetNameModel = {
+        currentName: this.cleanedName,
+        newName: newName
+      }
+      this.deviceService.updateNetName(model).subscribe({
+        next: result => {
+          console.log(result);
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
+      console.log(model);
     }
+  }
+
+  loadCities(): void {
+    this.citiesService.get().subscribe({
+      next: result => {
+        this.cities = result;
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
+  }
+
+  loadAllocations(): void {
+    this.allocationsService.get().subscribe({
+      next: result => {
+        this.allocationTypes = result;
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
   }
 }
