@@ -19,8 +19,8 @@
                 <th>Номер устройства</th>
                 <th>Тип размещения</th>
                 <th>Техник</th>
-                <th>Хранилище</th>
-                <th>Трансляция</th>
+                <!-- <th>Хранилище</th>
+                <th>Трансляция</th> -->
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-device>
@@ -36,14 +36,14 @@
                 <td>{{ device.deviceId }}</td>
                 <td>{{ device.allocationType.name }}</td>
                 <td>{{ device.technician.firstName }}</td>
-                <td>
+                <!-- <td>
                     <p-button (click)="showFiles(device.Name, device.Bucket, device.Prefix)" styleClass="p-button-text"
                         label="Смотреть"></p-button>
                 </td>
                 <td>
                     <p-button (click)="showTranslation(device.TranslationUrl)" styleClass="p-button-text"
                         label="Смотреть"></p-button>
-                </td>
+                </td> -->
             </tr>
         </ng-template>
     </p-table>
