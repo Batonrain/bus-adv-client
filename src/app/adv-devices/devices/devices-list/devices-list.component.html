@@ -14,9 +14,9 @@
             <tr>
                 <th>Название</th>
                 <th>Статус</th>
+                <th>Город</th>
                 <th>Маршрут</th>
                 <th>Номер устройства</th>
-                <th>Город</th>
                 <th>Тип размещения</th>
                 <th>Техник</th>
                 <th>Хранилище</th>
@@ -31,9 +31,9 @@
                 <td>
                     <p-tag [value]="getStatusText(device.isOnline)" [severity]="getSeverity(device.isOnline)"></p-tag>
                 </td>
+                <td>{{ device.city.name }}</td>
                 <td>{{ device.routeNumber}}</td>
                 <td>{{ device.deviceId }}</td>
-                <td>{{ device.city.name }}</td>
                 <td>{{ device.allocationType.name }}</td>
                 <td>{{ device.technician.firstName }}</td>
                 <td>
