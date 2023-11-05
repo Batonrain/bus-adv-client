@@ -16,6 +16,14 @@
         </div>
     </div>
     <div class="form-group">
+        <label>Бакет</label>
+        <input pInputText class="form-control" name="cityBucket" formControlName="cityBucket" />
+        <div class="alert alert-danger"
+            *ngIf="cityForm.controls['cityBucket'].invalid && cityForm.controls['cityBucket'].touched">
+            Не указана аббревиатура
+        </div>
+    </div>
+    <div class="form-group">
         <button pButton class="btn btn-default" [disabled]="cityForm.invalid">
             {{approveButtonText}}
         </button>

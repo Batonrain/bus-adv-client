@@ -17,18 +17,21 @@ export class AddCityComponent implements OnInit {
     this.isEdit = this.dialogConfig.data['isEdit']
     let initCityNameValue = '';
     let initShortCityNameValue = '';
+    let initCityBucketValue = '';
 
     if (this.isEdit) {
       this.approveButtonText = 'Сохранить';
       this.id = this.dialogConfig.data['id'];
       initCityNameValue = this.dialogConfig.data['cityName'];
       initShortCityNameValue = this.dialogConfig.data['cityShortName'];
+      initCityBucketValue = this.dialogConfig.data['cityBucket'];
     }
 
     this.cityForm = new FormGroup(
       {
         'cityName': new FormControl(initCityNameValue, Validators.required),
         'cityShortName': new FormControl(initShortCityNameValue, Validators.required),
+        'cityBucket': new FormControl(initCityBucketValue, Validators.required),
       });
   }
 
@@ -43,7 +46,8 @@ export class AddCityComponent implements OnInit {
     let city: City = {
       id: Number(this.id),
       name: this.cityForm.value['cityName'],
-      shortName: this.cityForm.value['cityShortName']
+      shortName: this.cityForm.value['cityShortName'],
+      bucketName: this.cityForm.value['cityBucket'],
     }
     if (this.isEdit) {
       this.citiesService.update(city.id, city)

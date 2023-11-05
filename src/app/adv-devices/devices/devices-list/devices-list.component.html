@@ -12,15 +12,15 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th>Название</th>
+                <th pSortableColumn="name">Название <p-sortIcon field="name"></p-sortIcon></th>
                 <th>Статус</th>
-                <th>Город</th>
-                <th>Маршрут</th>
-                <th>Номер устройства</th>
+                <th pSortableColumn="city.name">Город <p-sortIcon field="city.name"></p-sortIcon></th>
+                <th pSortableColumn="routeNumber">Маршрут <p-sortIcon field="routeNumber"></p-sortIcon></th>
+                <th pSortableColumn="deviceId">Номер устройства <p-sortIcon field="deviceId"></p-sortIcon></th>
                 <th>Тип размещения</th>
                 <th>Техник</th>
-                <!-- <th>Хранилище</th>
-                <th>Трансляция</th> -->
+                <th>Хранилище</th>
+                <!-- <th>Трансляция</th> -->
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-device>
@@ -36,6 +36,7 @@
                 <td>{{ device.deviceId }}</td>
                 <td>{{ device.allocationType.name }}</td>
                 <td>{{ device.technician.firstName }}</td>
+                <td>{{ device.prefix }}</td>
                 <!-- <td>
                     <p-button (click)="showFiles(device.Name, device.Bucket, device.Prefix)" styleClass="p-button-text"
                         label="Смотреть"></p-button>
