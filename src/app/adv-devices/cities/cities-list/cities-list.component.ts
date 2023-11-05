@@ -49,7 +49,7 @@ export class CitiesListComponent implements OnInit {
     });
   }
 
-  edit(id: string, name: string, shortName: string): void {
+  edit(id: string, name: string, shortName: string, cityBucket: string): void {
     this.ref = this.dialogService.open(AddCityComponent, {
       header: 'Редактирование города',
       width: '50%',
@@ -63,7 +63,8 @@ export class CitiesListComponent implements OnInit {
         isEdit: true,
         id: id,
         cityName: name,
-        cityShortName: shortName
+        cityShortName: shortName,
+        cityBucket: cityBucket,
       }
     });
 

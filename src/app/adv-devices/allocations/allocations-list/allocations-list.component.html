@@ -16,6 +16,7 @@
                 <tr>
                     <th>Название</th>
                     <th>Аббревиатура</th>
+                    <th>Префикс</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -24,8 +25,9 @@
                 <tr>
                     <td>{{ allocationType.name }}</td>
                     <td>{{ allocationType.shortName }}</td>
+                    <td>{{ allocationType.folderPrefix }}</td>
                     <td>
-                        <p-button (click)="edit(allocationType.id, allocationType.name, allocationType.shortName)" label="Редактировать" 
+                        <p-button (click)="edit(allocationType.id, allocationType.name, allocationType.shortName, allocationType.folderPrefix)" label="Редактировать" 
                         styleClass="p-button-text"></p-button>
                     </td>
                     <td>

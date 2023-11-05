@@ -20,18 +20,21 @@ export class AddAllocationComponent {
     this.isEdit = this.dialogConfig.data['isEdit']
     let initAllocationTypeNameValue = '';
     let initShortAllocationTypeNameValue = '';
+    let initFolderPrefixValue = '';
 
     if (this.isEdit) {
       this.approveButtonText = 'Сохранить';
       this.id = this.dialogConfig.data['id'];
       initAllocationTypeNameValue = this.dialogConfig.data['allocationType'];
       initShortAllocationTypeNameValue = this.dialogConfig.data['shortAllocationType'];
+      initFolderPrefixValue = this.dialogConfig.data['folderPrefix'];
     }
 
     this.allocationTypeForm = new FormGroup(
       {
         'allocationType': new FormControl(initAllocationTypeNameValue, Validators.required),
         'shortAllocationType': new FormControl(initShortAllocationTypeNameValue, Validators.required),
+        'folderPrefix': new FormControl(initFolderPrefixValue, Validators.required),
       });
   }
 
@@ -46,7 +49,8 @@ export class AddAllocationComponent {
     let city: AllocationType = {
       id: Number(this.id),
       name: this.allocationTypeForm.value['allocationType'],
-      shortName: this.allocationTypeForm.value['shortAllocationType']
+      shortName: this.allocationTypeForm.value['shortAllocationType'],
+      folderPrefix: this.allocationTypeForm.value['folderPrefix']
     }
     if (this.isEdit) {
       this.allocationsService.update(city.id, city)

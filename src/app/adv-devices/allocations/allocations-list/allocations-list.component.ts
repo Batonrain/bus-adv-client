@@ -49,7 +49,7 @@ export class AllocationsListComponent {
     });
   }
 
-  edit(id: string, name: string, shortName: string): void {
+  edit(id: string, name: string, shortName: string, folderPrefix: string): void {
     this.ref = this.dialogService.open(AddAllocationComponent, {
       header: 'Редактирование типа размещения',
       width: '50%',
@@ -63,7 +63,8 @@ export class AllocationsListComponent {
         isEdit: true,
         id: id,
         allocationType: name,
-        shortAllocationType: shortName
+        shortAllocationType: shortName,
+        folderPrefix: folderPrefix,
       }
     });
 

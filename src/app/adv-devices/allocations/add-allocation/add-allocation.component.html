@@ -16,6 +16,14 @@
         </div>
     </div>
     <div class="form-group">
+        <label>Аббревиатура</label>
+        <input pInputText class="form-control" name="folderPrefix" formControlName="folderPrefix" />
+        <div class="alert alert-danger"
+            *ngIf="allocationTypeForm.controls['folderPrefix'].invalid && allocationTypeForm.controls['folderPrefix'].touched">
+            Не указана аббревиатура
+        </div>
+    </div>
+    <div class="form-group">
         <button pButton class="btn btn-default" [disabled]="allocationTypeForm.invalid">
             {{approveButtonText}}
         </button>
