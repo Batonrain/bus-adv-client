@@ -16,11 +16,13 @@ import { map } from 'rxjs/operators';
 export class PlaylistComponent implements OnInit {
   public cities: City[] = [];
   selectedCity: City | undefined;
-  public folders: string[] = []
+  public folders: string[] = ['Выберите город...']
   public selectedFolder: string = '';
   public routes: string[] = [];
   public selectedRoutes: any[] = [];
   public selectedRoute: any = {};
+  public updateButtonDisabled: boolean = true;
+  public folderListDisabled: boolean = true;
 
   constructor(
     public citiesService: CitiesService,
@@ -54,11 +56,11 @@ export class PlaylistComponent implements OnInit {
             let rts: number[] = this.extractNumbers(f);
             rts.forEach(r => strArray.push(r));
           });
-          console.log('strArray', strArray);
           this.routes = strArray
                           .sort((a, b) => a - b)
                           .filter((n, i) => strArray.indexOf(n) === i)
                           .map(n => n.toString());
+          this.folderListDisabled = false;
         },
         error: error => console.error('Произошла ошибка', error)
       });
@@ -67,17 +69,22 @@ export class PlaylistComponent implements OnInit {
   public onFolderSelection(selectedValue: string) {
     const numbers = this.extractNumbers(selectedValue).map(n => n.toString());
     this.selectedRoutes = numbers;
-    console.log('selectedRoutes', this.selectedRoutes);
+    this.updateButtonDisabled = false;
   }
 
   public onRouteClick(event: any) {
     console.log('onRouteClick', event);
   }
 
+  public onUpdatePlaylistClick(){
+    console.log('this.selectedRoutes', this.selectedRoutes);
+    console.log('selectedFolder', this.selectedFolder);
+  }
+
   private extractNumbers(str: string): number[] {
     const parts = str.split('.');
     return parts
-      .map(part => parseInt(part, 10))  // Преобразование строки в число
+      .map(part => parseInt(part, 10))
       .filter(part => !isNaN(part));
   }
 
