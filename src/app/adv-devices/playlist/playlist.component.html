@@ -1,0 +1,22 @@
+<div class="frame" style="height: 100vh;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+
+                <p-dropdown (onChange)="onSelectionChange($event.value)" [options]="cities" [(ngModel)]="selectedCity"
+                    optionLabel="name" placeholder="Выберите город"></p-dropdown>
+            </div>
+            <div class="col-sm">
+
+                <p-listbox [options]="folders" [(ngModel)]="selectedFolder" [style]="{'width':'15rem'}"
+                    [listStyle]="{'max-height': '600px'}"></p-listbox>
+            </div>
+            <div class="col-sm">
+                <!-- <div *ngFor="let category of categories" class="field-checkbox">
+                    <p-checkbox name="group" [value]="category" [(ngModel)]="selectedCategories" [inputId]="category.key"></p-checkbox>
+                    <label [for]="category.key">{{ category.name }}</label>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

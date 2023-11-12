@@ -3,5 +3,6 @@ export const environment = {
     CityApi:'City',
     AllocationType:'AllocationType',
     DeviceApi:'Device',
-    UserApi:'User'
+    UserApi:'User',
+    PlaylistApi:'Playlist'
 };

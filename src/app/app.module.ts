@@ -20,6 +20,8 @@ import { AllocationsListComponent } from './adv-devices/allocations/allocations-
 import { TechniciansListComponent } from './adv-devices/technicians/technicians-list/technicians-list.component';
 import { AddTechniciansComponent } from './adv-devices/technicians/add-technicians/add-technicians.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ChangeDeviceNameComponent } from './adv-devices/devices/change-device-name/change-device-name.component';
+import { PlaylistComponent } from './adv-devices/playlist/playlist.component';
 
 // PrimeNG
 import { ToastModule } from 'primeng/toast';
@@ -34,7 +36,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TabViewModule } from 'primeng/tabview';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ChangeDeviceNameComponent } from './adv-devices/devices/change-device-name/change-device-name.component';
+import { SplitterModule } from 'primeng/splitter';
+import { ListboxModule } from 'primeng/listbox';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -51,6 +55,7 @@ import { ChangeDeviceNameComponent } from './adv-devices/devices/change-device-n
     TechniciansListComponent,
     AddTechniciansComponent,
     ChangeDeviceNameComponent,
+    PlaylistComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +75,9 @@ import { ChangeDeviceNameComponent } from './adv-devices/devices/change-device-n
     TabViewModule,
     TabMenuModule,
     ConfirmDialogModule,
+    SplitterModule,
+    ListboxModule,
+    CheckboxModule,
   ],
   providers: [
     {
