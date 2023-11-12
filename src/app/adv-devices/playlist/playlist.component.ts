@@ -49,13 +49,23 @@ export class PlaylistComponent implements OnInit {
         next: combinedResults => {
           this.folders = combinedResults.bucketReques;
           this.routes = combinedResults.routesRequest;
+          let strArray: number[] = [];
+          this.folders.forEach(f => {
+            let rts: number[] = this.extractNumbers(f);
+            rts.forEach(r => strArray.push(r));
+          });
+          console.log('strArray', strArray);
+          this.routes = strArray
+                          .sort((a, b) => a - b)
+                          .filter((n, i) => strArray.indexOf(n) === i)
+                          .map(n => n.toString());
         },
         error: error => console.error('Произошла ошибка', error)
       });
   }
 
   public onFolderSelection(selectedValue: string) {
-    const numbers = this.extractNumbers(selectedValue);
+    const numbers = this.extractNumbers(selectedValue).map(n => n.toString());
     this.selectedRoutes = numbers;
     console.log('selectedRoutes', this.selectedRoutes);
   }
@@ -64,9 +74,11 @@ export class PlaylistComponent implements OnInit {
     console.log('onRouteClick', event);
   }
 
-  private extractNumbers(str: string): string[] {
+  private extractNumbers(str: string): number[] {
     const parts = str.split('.');
-    return parts.filter(part => !isNaN(parseInt(part, 10)));
+    return parts
+      .map(part => parseInt(part, 10))  // Преобразование строки в число
+      .filter(part => !isNaN(part));
   }
 
   private loadData(): void {
