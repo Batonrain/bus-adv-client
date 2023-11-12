@@ -3,19 +3,17 @@
         <div class="row">
             <div class="col-sm">
 
-                <p-dropdown (onChange)="onSelectionChange($event.value)" [options]="cities" [(ngModel)]="selectedCity"
+                <p-dropdown (onChange)="onCitySelect($event.value)" [options]="cities" [(ngModel)]="selectedCity"
                     optionLabel="name" placeholder="Выберите город"></p-dropdown>
             </div>
             <div class="col-sm">
-
-                <p-listbox [options]="folders" [(ngModel)]="selectedFolder" [style]="{'width':'15rem'}"
-                    [listStyle]="{'max-height': '600px'}"></p-listbox>
+                <p-listbox [options]="folders" (onChange)="onFolderSelection($event.value)" [(ngModel)]="selectedFolder"
+                    [style]="{'width':'15rem'}" [listStyle]="{'max-height': '600px'}"></p-listbox>
             </div>
             <div class="col-sm">
-                <!-- <div *ngFor="let category of categories" class="field-checkbox">
-                    <p-checkbox name="group" [value]="category" [(ngModel)]="selectedCategories" [inputId]="category.key"></p-checkbox>
-                    <label [for]="category.key">{{ category.name }}</label>
-                </div> -->
+                <div *ngFor="let route of routes">
+                    <p-checkbox name="routesGroup" (onChange)="onRouteClick($event)" [label]="route" [value]="route" [(ngModel)]="selectedRoutes" [inputId]="route"></p-checkbox>
+                </div>
             </div>
         </div>
     </div>

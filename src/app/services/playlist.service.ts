@@ -17,7 +17,7 @@ export class PlaylistService {
     return this.http.get<string[]>(`${this.baseUrl}/getBucketFolders?name=${name}`);
   }
 
-  getCityRoutes(id: string): Observable<string[]> {
-    return this.http.get<string[]>(`${this.baseUrl}?name=${name}`);
+  getCityRoutes(id: number): Observable<string[]> {
+    return this.http.get<string[]>(`${this.baseUrl}/getCityRoutes?cityId=${id}`);
   }
 }
