@@ -16,5 +16,6 @@ export interface Device {
     deviceId: string;
     routeNumber: string;
     isOnline: boolean;
+    offlineFrom: string;
     translationUrl: string;
 }

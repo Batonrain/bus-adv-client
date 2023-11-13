@@ -39,6 +39,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { SplitterModule } from 'primeng/splitter';
 import { ListboxModule } from 'primeng/listbox';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ChipModule } from 'primeng/chip';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     SplitterModule,
     ListboxModule,
     CheckboxModule,
+    ChipModule,
   ],
   providers: [
     {
