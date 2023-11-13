@@ -78,12 +78,26 @@ export class PlaylistComponent implements OnInit {
   }
 
   public submitRename() {
+    let model: ChangeFolderNameModel = {
+      selectedFolder: this.selectedFolder,
+      selectedRoutes: this.selectedRoutes,
+      bucketName: this.selectedCity?.bucketName ?? '',
+    };
+
     this.confirmationService.confirm({
       message: 'Вы уверены, что хотите переименовать папки?',
       header: 'Подверждение операции',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.messageService.add({ severity: 'info', summary: 'Подтверждение операции', detail: 'Вы подтвердили операцию по переименованию папок' });
+        this.playlistService.updateFoldersNames(model).subscribe({
+          next: result => {
+            this.messageService.add({ severity: 'info', summary: 'Подтверждение операции', detail: 'Вы подтвердили операцию по переименованию папок' });
+            window.location.reload();
+          },
+          error: err => {
+            console.log(err);
+          }
+        })
       },
       reject: (type: ConfirmEventType) => {
         switch (type) {
@@ -99,21 +113,12 @@ export class PlaylistComponent implements OnInit {
   }
 
   public onUpdatePlaylistClick() {
-    console.log('this.selectedRoutes', this.selectedRoutes);
-    console.log('selectedFolder', this.selectedFolder);
     let model: ChangeFolderNameModel = {
       selectedFolder: this.selectedFolder,
       selectedRoutes: this.selectedRoutes,
       bucketName: this.selectedCity?.bucketName ?? '',
     };
-    this.playlistService.updateFoldersNames(model).subscribe({
-      next: result => {
-        console.log('updateFoldersNames', result);
-      },
-      error: err => {
-        console.log(err);
-      }
-    })
+
   }
 
   private extractNumbers(str: string): number[] {
