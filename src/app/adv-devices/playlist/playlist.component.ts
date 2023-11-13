@@ -112,15 +112,6 @@ export class PlaylistComponent implements OnInit {
     });
   }
 
-  public onUpdatePlaylistClick() {
-    let model: ChangeFolderNameModel = {
-      selectedFolder: this.selectedFolder,
-      selectedRoutes: this.selectedRoutes,
-      bucketName: this.selectedCity?.bucketName ?? '',
-    };
-
-  }
-
   private extractNumbers(str: string): number[] {
     const parts = str.split('.');
     return parts
