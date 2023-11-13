@@ -19,7 +19,6 @@ jobs:
         script: |
           cd /
           cd /projects/AdvertisingBoard/client/bus-adv-client
-          rm rf dist/*
           git pull origin master
           npm install
           ng build
