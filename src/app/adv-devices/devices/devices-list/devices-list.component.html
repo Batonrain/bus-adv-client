@@ -31,9 +31,9 @@
                 </td>
                 <td>
                     <p-tag [value]="getStatusText(device.isOnline)" [severity]="getSeverity(device.isOnline)"></p-tag>
-                    <!-- <br>
+                    <br>
                     <p style="font-size: small;margin-bottom:0;"><i>{{getOfflineTime(device.isOnline,
-                            device.offlineFrom) | date: "'с' HH:mm yyyy.mm.dd" }}</i></p> -->
+                            device.offlineFrom) | date: "'с' HH:mm yyyy.mm.dd" }}</i></p>
                 </td>
                 <td>{{ device.city.name }}</td>
                 <td>{{ device.routeNumber}}</td>
