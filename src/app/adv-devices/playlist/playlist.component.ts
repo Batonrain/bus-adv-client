@@ -77,25 +77,25 @@ export class PlaylistComponent implements OnInit {
     console.log('onRouteClick', event);
   }
 
-  public submitRename(){
+  public submitRename() {
     this.confirmationService.confirm({
       message: 'Вы уверены, что хотите переименовать папки?',
       header: 'Подверждение операции',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-          this.messageService.add({ severity: 'info', summary: 'Подтверждение операции', detail: 'Вы подтвердили операцию по переименованию папок' });
+        this.messageService.add({ severity: 'info', summary: 'Подтверждение операции', detail: 'Вы подтвердили операцию по переименованию папок' });
       },
       reject: (type: ConfirmEventType) => {
         switch (type) {
-            case ConfirmEventType.REJECT:
-                this.messageService.add({ severity: 'error', summary: 'Отмена переименования', detail: 'Вы отменили операцию по переименованию папок' });
-                break;
-            case ConfirmEventType.CANCEL:
-                this.messageService.add({ severity: 'warn', summary: 'Отмена переименования', detail: 'Вы отменили операцию по переименованию папок' });
-                break;
+          case ConfirmEventType.REJECT:
+            this.messageService.add({ severity: 'error', summary: 'Отмена переименования', detail: 'Вы отменили операцию по переименованию папок' });
+            break;
+          case ConfirmEventType.CANCEL:
+            this.messageService.add({ severity: 'warn', summary: 'Отмена переименования', detail: 'Вы отменили операцию по переименованию папок' });
+            break;
         }
-    }
-  });
+      }
+    });
   }
 
   public onUpdatePlaylistClick() {
