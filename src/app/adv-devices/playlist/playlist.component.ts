@@ -24,6 +24,8 @@ export class PlaylistComponent implements OnInit {
   public selectedRoute: any = {};
   public updateButtonDisabled: boolean = true;
   public folderListDisabled: boolean = true;
+  public addRouteDisabled: boolean = true;
+  public newRoute: string = '';
 
   constructor(
     public citiesService: CitiesService,
@@ -38,6 +40,7 @@ export class PlaylistComponent implements OnInit {
 
   public onCitySelect(selectedValue: any) {
     this.selectedCity = selectedValue;
+    this.addRouteDisabled = true;
     forkJoin({
       bucketReques: this.playlistService.getBucketFolders(selectedValue.bucketName),
       routesRequest: this.playlistService.getCityRoutes(selectedValue.id),
@@ -71,10 +74,11 @@ export class PlaylistComponent implements OnInit {
     const numbers = this.extractNumbers(selectedValue).map(n => n.toString());
     this.selectedRoutes = numbers;
     this.updateButtonDisabled = false;
+    this.addRouteDisabled = false;
   }
 
   public onRouteClick(event: any) {
-    console.log('onRouteClick', event);
+    // console.log('onRouteClick', event);
   }
 
   public submitRename() {
@@ -110,6 +114,11 @@ export class PlaylistComponent implements OnInit {
         }
       }
     });
+  }
+
+  public addNewRoute(): void{
+    this.routes.push(this.newRoute);
+    this.newRoute = '';
   }
 
   private extractNumbers(str: string): number[] {
