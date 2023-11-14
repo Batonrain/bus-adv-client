@@ -55,13 +55,12 @@ export class PlaylistComponent implements OnInit {
         next: combinedResults => {
           this.folders = combinedResults.bucketReques;
           this.routes = combinedResults.routesRequest;
-          let strArray: number[] = [];
+          let strArray: string[] = [];
           this.folders.forEach(f => {
-            let rts: number[] = this.extractNumbers(f);
+            let rts: string[] = this.extractNumbers(f);
             rts.forEach(r => strArray.push(r));
           });
           this.routes = strArray
-            .sort((a, b) => a - b)
             .filter((n, i) => strArray.indexOf(n) === i)
             .map(n => n.toString());
           this.folderListDisabled = false;
@@ -121,11 +120,11 @@ export class PlaylistComponent implements OnInit {
     this.newRoute = '';
   }
 
-  private extractNumbers(str: string): number[] {
+  private extractNumbers(str: string): string[] {
     const parts = str.split('.');
-    return parts
-      .map(part => parseInt(part, 10))
-      .filter(part => !isNaN(part));
+    const regex = /^[A-Za-z0-9]{1,3}$/; // Регулярное выражение для проверки каждой части
+
+    return parts.filter(part => regex.test(part));
   }
 
   private loadData(): void {
