@@ -123,7 +123,7 @@ export class PlaylistComponent implements OnInit {
 
   private extractNumbers(str: string): string[] {
     const parts = str.split('.');
-    const regex = /^[A-Za-z0-9]{1,3}$/; // Регулярное выражение для проверки каждой части
+    const regex = /^[A-Za-z0-9\u0400-\u04FF]{1,3}$/; // Регулярное выражение для проверки каждой части
 
     return parts.filter(part => regex.test(part));
   }
