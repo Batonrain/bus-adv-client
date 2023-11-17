@@ -4,7 +4,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { VideoStreamComponent } from '../video-stream/video-stream.component';
 import { Table } from 'primeng/table';
 import { FilesListComponent } from '../files-list/files-list.component';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 import { CitiesService } from 'src/app/services/cities.service';
 import { Device } from 'src/app/models/device.models';
 import { ChangeDeviceNameComponent } from '../change-device-name/change-device-name.component';
@@ -20,7 +20,9 @@ export class DevicesListComponent implements OnInit {
     public deviceService: DevicesService,
     public citiesService: CitiesService,
     public dialogService: DialogService,
+    public confirmationService: ConfirmationService,
     public messageService: MessageService) { }
+  public sevDanger = 'danger';
 
   public devices: Device[] = [];
   ref: DynamicDialogRef | undefined;
@@ -81,6 +83,35 @@ export class DevicesListComponent implements OnInit {
     });
   }
 
+  deleteRoute(id: number, routeName:string): void {
+    this.confirmationService.confirm({
+      message: 'Вы уверены, что хотите удалить маршрут ' + routeName + '?',
+      header: 'Подверждение операции',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.deviceService.delete(id).subscribe({
+          next: result => {
+            this.messageService.add({ severity: 'info', summary: 'Подтверждение удаления', detail: 'Устройство удалено' });
+            window.location.reload();
+          },
+          error: err => {
+            console.log(err);
+          }
+        })
+      },
+      reject: (type: ConfirmEventType) => {
+        switch (type) {
+          case ConfirmEventType.REJECT:
+            this.messageService.add({ severity: 'error', summary: 'Отмена удаления', detail: 'Устройство не будет удалено' });
+            break;
+          case ConfirmEventType.CANCEL:
+            this.messageService.add({ severity: 'warn', summary: 'Отмена удаления', detail: 'Устройство не будет удалено' });
+            break;
+        }
+      }
+    });
+  }
+
   getShortName(name: string): string {
     return name.replace('.local', '');
   }
@@ -103,14 +134,14 @@ export class DevicesListComponent implements OnInit {
     return 'Оффлайн'
   }
 
-  getOfflineTime(isOnline: boolean, time:string): any {
-    if(!isOnline){
+  getOfflineTime(isOnline: boolean, time: string): any {
+    if (!isOnline) {
       console.log(time);
       let dateTime = new Date(time);
       console.log(dateTime);
       return dateTime;
     }
-    
+
     return '';
   }
 
