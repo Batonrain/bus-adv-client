@@ -77,7 +77,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   public onRouteClick(event: any) {
-    // console.log('onRouteClick', event);
+    //console.log('onRouteClick', event);
   }
 
   public submitRename() {
@@ -86,6 +86,7 @@ export class PlaylistComponent implements OnInit {
       selectedRoutes: this.selectedRoutes,
       bucketName: this.selectedCity?.bucketName ?? '',
     };
+    //console.log(model);
 
     this.confirmationService.confirm({
       message: 'Вы уверены, что хотите переименовать папки?',

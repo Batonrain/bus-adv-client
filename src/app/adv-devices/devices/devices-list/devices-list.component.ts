@@ -136,10 +136,7 @@ export class DevicesListComponent implements OnInit {
 
   getOfflineTime(isOnline: boolean, time: string): any {
     if (!isOnline) {
-      console.log(time);
-      let dateTime = new Date(time);
-      console.log(dateTime);
-      return dateTime;
+      return new Date(time);
     }
 
     return '';
