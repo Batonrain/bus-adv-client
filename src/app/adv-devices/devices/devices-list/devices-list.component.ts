@@ -112,6 +112,35 @@ export class DevicesListComponent implements OnInit {
     });
   }
 
+  rebootDevice(deviceId: number){
+    this.confirmationService.confirm({
+      message: 'Вы уверены, что хотите перезагрузить устройство?',
+      header: 'Подверждение операции',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.deviceService.reboot(deviceId).subscribe({
+          next: result => {
+            this.messageService.add({ severity: 'info', summary: 'Подтверждение перезагрузки', detail: 'Устройство будет скоро перезагружено' });
+            window.location.reload();
+          },
+          error: err => {
+            console.log(err);
+          }
+        })
+      },
+      reject: (type: ConfirmEventType) => {
+        switch (type) {
+          case ConfirmEventType.REJECT:
+            this.messageService.add({ severity: 'error', summary: 'Отмена перезагрузки', detail: 'Устройство не будет перезагружено' });
+            break;
+          case ConfirmEventType.CANCEL:
+            this.messageService.add({ severity: 'warn', summary: 'Отмена перезагрузки', detail: 'Устройство не будет перезагружено' });
+            break;
+        }
+      }
+    });
+  }
+
   getShortName(name: string): string {
     return name.replace('.local', '');
   }

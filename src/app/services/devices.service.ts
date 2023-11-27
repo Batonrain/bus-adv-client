@@ -19,6 +19,10 @@ export class DevicesService {
     return this.http.get<Device[]>(`${this.baseUrl}`);
   }
 
+  reboot(deviceId: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/reboot-device/${deviceId}`);
+  }
+
   create(device: Device): Observable<Device> {
     return this.http.post<Device>(this.baseUrl, device);
   }

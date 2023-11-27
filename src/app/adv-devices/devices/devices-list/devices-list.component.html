@@ -21,6 +21,7 @@
                 <th>Техник</th>
                 <th>Хранилище</th>
                 <th></th>
+                <th></th>
                 <!-- <th>Трансляция</th> -->
             </tr>
         </ng-template>
@@ -42,6 +43,7 @@
                 <td>{{ device.allocationType.name }}</td>
                 <td>{{ device.technician.firstName }}</td>
                 <td>{{ device.prefix }}</td>
+                <td><button (click)="rebootDevice(device.id)" type="button" class="btn btn-danger">Перезагрузить</button></td>
                 <td><button (click)="deleteRoute(device.id, getShortName(device.name))" type="button" class="btn btn-danger">Удалить</button></td>
             </tr>
         </ng-template>
