@@ -19,6 +19,14 @@
     padding: 5px 0;
 }
 
+.main-number-input {
+    width: 140px;
+    text-align: center;
+    margin-right: 5px; /* Добавляет небольшой отступ между инпутами */
+    border: 1px solid #ccc;
+    padding: 5px 0;
+}
+
 form {
     display: flex;
     flex-direction: column;

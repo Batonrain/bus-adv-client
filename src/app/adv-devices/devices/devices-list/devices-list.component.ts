@@ -65,7 +65,7 @@ export class DevicesListComponent implements OnInit {
   showChangeNetName(name: string): void {
     this.ref = this.dialogService.open(ChangeDeviceNameComponent, {
       header: 'Изменить сетевое имя ',
-      width: '30%',
+      width: '60%',
       // height: '70%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,

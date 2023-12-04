@@ -43,7 +43,7 @@ export class ChangeDeviceNameComponent implements OnInit {
       oldPart4: [{value: parts[3], disabled: true}],
       newPart1: ['', [Validators.required, Validators.pattern(/[A-Za-z]/)]],
       newPart2: ['', [Validators.required, Validators.pattern(/[A-Za-z]/)]],
-      newPart3: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{1,3}$/)]],
+      newPart3: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]/)]],
       newPart4: ['', [Validators.required, Validators.pattern(/\d{1,3}/)]],
     });
   }
