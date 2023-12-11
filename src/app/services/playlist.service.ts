@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ChangeFolderNameModel } from '../models/change-folders-name.model';
+import { SetStartupVideo } from '../models/set-startup-video-for-device.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,9 @@ export class PlaylistService {
         prefix: prefix
       }
     })
+  }
+
+  setStartVideoForDevice(model: SetStartupVideo): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/setStartupVideoForDevice`, model);
   }
 }

@@ -35,20 +35,6 @@ export class DevicesListComponent implements OnInit {
     table.filterGlobal(text.value, 'contains');
   }
 
-  showFiles(name: string, bucket: string, prefix: string): void {
-    this.ref = this.dialogService.open(FilesListComponent, {
-      header: 'Плейлист ' + name,
-      width: '60%',
-      contentStyle: { overflow: 'auto' },
-      baseZIndex: 10000,
-      maximizable: true,
-      data: {
-        bucket: bucket,
-        prefix: prefix
-      }
-    });
-  }
-
   showTranslation(url: string): void {
     this.ref = this.dialogService.open(VideoStreamComponent, {
       header: 'Прямая трансляция',
@@ -83,7 +69,7 @@ export class DevicesListComponent implements OnInit {
     });
   }
 
-  showFileList(bucket: string, prefix: string): void {
+  showFileList(bucket: string, prefix: string, device: string): void {
     this.ref = this.dialogService.open(FilesListComponent, {
       header: 'Список рекламный файлов ',
       width: '70%',
@@ -94,13 +80,7 @@ export class DevicesListComponent implements OnInit {
       data: {
         bucket: bucket,
         prefix: prefix,
-      }
-    });
-
-    this.ref.onClose.subscribe((result: boolean) => {
-      if (result) {
-        this.loadData();
-        this.messageService.add({ severity: 'success', summary: 'Имя устройства успешно изменено' });
+        device: device,
       }
     });
   }
@@ -198,7 +178,6 @@ export class DevicesListComponent implements OnInit {
       .subscribe({
         next: result => {
           this.devices = result;
-          console.log(this.devices);
         },
         error: err => {
           console.log(err);

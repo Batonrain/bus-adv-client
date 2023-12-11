@@ -13,7 +13,7 @@
         <tr>
             <td>{{ videos }}</td>
             <td>
-                <p-button icon="pi pi-external-link" styleClass="p-button-text"
+                <p-button (onClick)="setStartupVideo(videos)" icon="pi pi-external-link" styleClass="p-button-text"
                     label="Сделать стартовым"></p-button>
             </td>
         </tr>

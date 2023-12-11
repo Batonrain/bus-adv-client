@@ -42,7 +42,7 @@
                 <td>{{ device.deviceId }}</td>
                 <td>{{ device.allocationType.name }}</td>
                 <td>{{ device.technician.firstName }}</td>
-                <td><p-button (onClick)="showFileList(device.bucket, device.prefix)" styleClass="p-button-text">{{ device.prefix }}</p-button></td>
+                <td><p-button (onClick)="showFileList(device.bucket, device.prefix, device.name)" styleClass="p-button-text">{{ device.prefix }}</p-button></td>
                 <td><button (click)="rebootDevice(device.id)" type="button" class="btn btn-danger">Перезагрузить</button></td>
                 <td><button (click)="deleteRoute(device.id, getShortName(device.name))" type="button" class="btn btn-danger">Удалить</button></td>
             </tr>
