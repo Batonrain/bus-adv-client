@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SetStartupVideo } from 'src/app/models/set-startup-video-for-device.model';
 import { DevicesService } from 'src/app/services/devices.service';
 import { PlaylistService } from 'src/app/services/playlist.service';
@@ -18,6 +18,7 @@ export class FilesListComponent implements OnInit {
 
   constructor(
     private dialogService: DynamicDialogConfig,
+    private ref: DynamicDialogRef,
     private playlistService: PlaylistService) { }
 
   ngOnInit(): void {
@@ -47,7 +48,7 @@ export class FilesListComponent implements OnInit {
     this.playlistService.setStartVideoForDevice(model)
       .subscribe({
         next: result => {
-          console.log(result)
+          this.ref.close(true);
         },
         error: err => {
           console.log(err);

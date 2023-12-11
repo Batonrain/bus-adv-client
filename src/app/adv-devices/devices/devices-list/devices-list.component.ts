@@ -83,6 +83,12 @@ export class DevicesListComponent implements OnInit {
         device: device,
       }
     });
+
+    this.ref.onClose.subscribe((result: boolean) => {
+      if (result) {
+        this.messageService.add({ severity: 'success', summary: `Стартовый ролик для устройства ${device} успешно изменен` });
+      }
+    });
   }
 
   deleteRoute(id: number, routeName: string): void {
