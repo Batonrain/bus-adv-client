@@ -39,13 +39,4 @@ export class DevicesService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
-
-  getObjects(bucket: string, prefix: string): Observable<any> {
-    return this.http.get(environment.ApiBase + 'objects', {
-      params: {
-        bucket: bucket,
-        prefix: prefix
-      }
-    })
-  }
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { DevicesService } from 'src/app/services/devices.service';
+import { PlaylistService } from 'src/app/services/playlist.service';
 
 @Component({
   selector: 'app-files-list',
@@ -8,20 +9,20 @@ import { DevicesService } from 'src/app/services/devices.service';
   styleUrls: ['./files-list.component.css']
 })
 export class FilesListComponent implements OnInit {
-
   videos: any;
   loading: boolean = true;
 
   constructor(
     private dialogService: DynamicDialogConfig,
-    private deviceService: DevicesService)
-    {}
+    private playlistService: PlaylistService) { }
 
   ngOnInit(): void {
-    this.deviceService.getObjects(this.dialogService.data.bucket, this.dialogService.data.prefix)
+    this.playlistService
+    .getObjects(this.dialogService.data.bucket, this.dialogService.data.prefix)
       .subscribe({
         next: videos => {
-          this.videos = videos.videos;
+          console.log(videos)
+          this.videos = videos;
           this.loading = false;
           console.log(this.videos)
         },
@@ -30,7 +31,4 @@ export class FilesListComponent implements OnInit {
         }
       });
   }
-
-  downloadFile(){}
-  deleteFile(){}
 }

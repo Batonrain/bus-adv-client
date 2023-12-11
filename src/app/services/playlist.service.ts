@@ -25,4 +25,13 @@ export class PlaylistService {
   updateFoldersNames(model: ChangeFolderNameModel): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/updateFoldersNames`, model);
   }
+
+  getObjects(bucket: string, prefix: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/getBucketFiles`, {
+      params: {
+        bucket: bucket,
+        prefix: prefix
+      }
+    })
+  }
 }

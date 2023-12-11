@@ -83,7 +83,29 @@ export class DevicesListComponent implements OnInit {
     });
   }
 
-  deleteRoute(id: number, routeName:string): void {
+  showFileList(bucket: string, prefix: string): void {
+    this.ref = this.dialogService.open(FilesListComponent, {
+      header: 'Список рекламный файлов ',
+      width: '70%',
+      height: '100%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+      data: {
+        bucket: bucket,
+        prefix: prefix,
+      }
+    });
+
+    this.ref.onClose.subscribe((result: boolean) => {
+      if (result) {
+        this.loadData();
+        this.messageService.add({ severity: 'success', summary: 'Имя устройства успешно изменено' });
+      }
+    });
+  }
+
+  deleteRoute(id: number, routeName: string): void {
     this.confirmationService.confirm({
       message: 'Вы уверены, что хотите удалить маршрут ' + routeName + '?',
       header: 'Подверждение операции',
@@ -112,7 +134,7 @@ export class DevicesListComponent implements OnInit {
     });
   }
 
-  rebootDevice(deviceId: number){
+  rebootDevice(deviceId: number) {
     this.confirmationService.confirm({
       message: 'Вы уверены, что хотите перезагрузить устройство?',
       header: 'Подверждение операции',
