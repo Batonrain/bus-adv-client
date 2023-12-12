@@ -71,7 +71,7 @@ export class DevicesListComponent implements OnInit {
 
   showFileList(bucket: string, prefix: string, device: string): void {
     this.ref = this.dialogService.open(FilesListComponent, {
-      header: 'Список рекламный файлов ',
+      header: 'Список файлов ',
       width: '70%',
       height: '100%',
       contentStyle: { overflow: 'auto' },
