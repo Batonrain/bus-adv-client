@@ -36,7 +36,7 @@ export class PlaylistService {
     })
   }
 
-  setStartVideoForDevice(model: SetStartupVideo): Observable<any> {
+  setStartVideoForDevice(model: SetStartupVideo): Observable<string[]> {
     return this.http.post<any>(`${this.baseUrl}/setStartupVideoForDevice`, model);
   }
 }

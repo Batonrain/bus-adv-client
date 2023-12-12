@@ -1,19 +1,28 @@
-<p-table [value]="videos" responsiveLayout="scroll" [paginator]="true" [rows]="20" [showCurrentPageReport]="true"
+<p-table #filesTable [value]="files" responsiveLayout="scroll" [paginator]="true" [rows]="20" [showCurrentPageReport]="true"
     styleClass="p-datatable-sm p-datatable-striped"
+    [globalFilterFields]="['name']"
     currentPageReportTemplate="Показывает с {first} по {last} из {totalRecords} видео"
     [loading]="loading"
     [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="caption">
+        <div class="flex" style="display: flex!important;">
+            <span class="p-input-icon-left ml-auto" style="margin-left: auto!important;">
+                <input pInputText type="text" (input)="filter(filesTable, $event.target)" placeholder="Поиск" />
+            </span>
+
+        </div>
+    </ng-template>
     <ng-template pTemplate="header">
         <tr>
             <th>Название файла</th>
             <th></th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-videos>
+    <ng-template pTemplate="body" let-file>
         <tr>
-            <td>{{ videos }}</td>
+            <td>{{ file.name }}</td>
             <td>
-                <p-button (onClick)="setStartupVideo(videos)" icon="pi pi-external-link" styleClass="p-button-text"
+                <p-button (onClick)="setStartupVideo(file.name)" icon="pi pi-external-link" styleClass="p-button-text"
                     label="Сделать стартовым"></p-button>
             </td>
         </tr>

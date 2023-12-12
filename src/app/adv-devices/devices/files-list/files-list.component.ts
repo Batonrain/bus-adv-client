@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Table } from 'primeng/table';
+import { File } from 'src/app/models/file.model';
 import { SetStartupVideo } from 'src/app/models/set-startup-video-for-device.model';
 import { DevicesService } from 'src/app/services/devices.service';
 import { PlaylistService } from 'src/app/services/playlist.service';
@@ -10,7 +12,7 @@ import { PlaylistService } from 'src/app/services/playlist.service';
   styleUrls: ['./files-list.component.css']
 })
 export class FilesListComponent implements OnInit {
-  videos: any;
+  files: File[] = [];
   loading: boolean = true;
   bucket: string = "";
   prefix: string = "";
@@ -30,7 +32,12 @@ export class FilesListComponent implements OnInit {
       .getObjects(this.bucket, this.prefix)
       .subscribe({
         next: videos => {
-          this.videos = videos;
+          videos.forEach((element:string)  => {
+            let newFile: File = {
+              name: element
+            };
+            this.files.push(newFile);
+          });
           this.loading = false;
         },
         error: err => {
@@ -54,5 +61,9 @@ export class FilesListComponent implements OnInit {
           console.log(err);
         }
       })
+  }
+
+  filter(table: Table, text: any): void {
+    table.filterGlobal(text.value, 'contains');
   }
 }
