@@ -16,9 +16,9 @@
                 <th pSortableColumn="name">Название <p-sortIcon field="name"></p-sortIcon></th>
                 <th>Статус</th>
                 <th pSortableColumn="city.name">Город <p-sortIcon field="city.name"></p-sortIcon></th>
+                <th>Тип размещения</th>
                 <th pSortableColumn="routeNumber">Маршрут <p-sortIcon field="routeNumber"></p-sortIcon></th>
                 <th pSortableColumn="deviceId">Номер устройства <p-sortIcon field="deviceId"></p-sortIcon></th>
-                <th>Тип размещения</th>
                 <th>Техник</th>
                 <th>Хранилище</th>
             </tr>
@@ -41,9 +41,9 @@
                             device.offlineFrom) | date: "'с' HH:mm dd.MM" }}</i></p>
                 </td>
                 <td>{{ device.city.name }}</td>
+                <td>{{ device.allocationType.name }}</td>
                 <td>{{ device.routeNumber}}</td>
                 <td>{{ device.deviceId }}</td>
-                <td>{{ device.allocationType.name }}</td>
                 <td>{{ device.technician.firstName }}</td>
                 <td><p-button (onClick)="showFileList(device.bucket, device.prefix, device.name)"
                         styleClass="p-button-text">{{ device.prefix }}</p-button></td>
