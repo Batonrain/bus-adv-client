@@ -19,8 +19,8 @@
                 <th>Тип размещения</th>
                 <th pSortableColumn="routeNumber">Маршрут <p-sortIcon field="routeNumber"></p-sortIcon></th>
                 <th pSortableColumn="deviceId">Номер устройства <p-sortIcon field="deviceId"></p-sortIcon></th>
-                <th>Техник</th>
                 <th>Хранилище</th>
+                <th>Техник</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-device let-expanded="expanded">
@@ -44,9 +44,9 @@
                 <td>{{ device.allocationType.name }}</td>
                 <td>{{ device.routeNumber}}</td>
                 <td>{{ device.deviceId }}</td>
-                <td>{{ device.technician.firstName }}</td>
                 <td><p-button (onClick)="showFileList(device.bucket, device.prefix, device.name)"
-                        styleClass="p-button-text">{{ device.prefix }}</p-button></td>
+                    styleClass="p-button-text">{{ device.prefix }}</p-button></td>
+                <td>{{ device.technician.firstName }}</td>
             </tr>
         </ng-template>
         <ng-template pTemplate="rowexpansion" let-device>
