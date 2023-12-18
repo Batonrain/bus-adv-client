@@ -32,11 +32,13 @@ export class FilesListComponent implements OnInit {
       .getObjects(this.bucket, this.prefix)
       .subscribe({
         next: videos => {
+          let curFiles: File[] = []
           videos.forEach((element:string)  => {
             let newFile: File = {
               name: element
             };
-            this.files.push(newFile);
+            curFiles.push(newFile);
+            this.files = curFiles;
           });
           this.loading = false;
         },
