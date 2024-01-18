@@ -1,4 +1,8 @@
 <div>
-    <iframe scrolling="no" style="overflow:hidden; margin: 0 auto; display: block;" width="640" height="480"
-        [src]="getUrl()"></iframe>
+    <video id="videoElement" width="640" height="480" controls>
+        <source [src]="getUrl()" type="video/mp4">
+        Ваш браузер не поддерживает видео тег.
+    </video>
+    <!-- <iframe scrolling="no" style="overflow:hidden; margin: 0 auto; display: block;" width="640" height="480"
+        [src]="getUrl()"></iframe> -->
 </div>
