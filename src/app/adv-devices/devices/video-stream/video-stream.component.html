@@ -1,11 +1,7 @@
 <div>
-    <p-button (click)="getFrame()" styleClass="p-button-text">Сделать скриншот</p-button>
+    <p-button (click)="getFrame()" styleClass="btn btn">Сделать скриншот</p-button>
 </div>
 <div>
     <iframe scrolling="no" style="overflow:hidden; margin: 0 auto; display: block;" width="640" height="480"
         [src]="getUrl()"></iframe>
 </div>
-<!-- <p-fieldset>
-        <iframe scrolling="no" style="overflow:hidden; margin: 0 auto; display: block;" width="640" height="480"
-        [src]="getUrl()"></iframe>
-</p-fieldset> -->
