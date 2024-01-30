@@ -40,6 +40,7 @@ import { SplitterModule } from 'primeng/splitter';
 import { ListboxModule } from 'primeng/listbox';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ChipModule } from 'primeng/chip';
+import { FieldsetModule } from 'primeng/fieldset';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { ChipModule } from 'primeng/chip';
     ListboxModule,
     CheckboxModule,
     ChipModule,
+    FieldsetModule,
   ],
   providers: [
     {
