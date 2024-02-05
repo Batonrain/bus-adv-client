@@ -1,7 +1,11 @@
 <div>
-    <p-button (click)="getFrame()" styleClass="btn btn">Сделать скриншот</p-button>
+    <div>
+        <div class="button-container">
+            <button pButton type="button" (click)="getFrame()" icon="pi pi-camera" label="Сделать скриншот"></button>
+            <button pButton type="button" (click)="recordVideo()" icon="pi pi-video" label="Записать видео"></button>
+        </div>
+        <iframe scrolling="no" width="100%" height="400"
+            [src]="getUrl()"></iframe>
+    </div>
 </div>
-<div>
-    <iframe scrolling="no" style="overflow:hidden; margin: 0 auto; display: block;" width="640" height="480"
-        [src]="getUrl()"></iframe>
-</div>
+<p-toast></p-toast>

@@ -57,7 +57,7 @@
                                 class="btn btn-danger">Перезагрузить</button></div>
                         <div style="margin-right: 10px;"><button (click)="deleteRoute(device.id, getShortName(device.name))" type="button"
                                 class="btn btn-danger">Удалить</button></div>
-                        <div><button (click)="showTranslation(device.name)" type="button"
+                        <div><button (click)="showTranslation(device.id, device.name)" type="button"
                                 class="btn btn-danger">Трансляция</button></div>
                     </div>
                 </td>

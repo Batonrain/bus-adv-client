@@ -35,7 +35,7 @@ export class DevicesListComponent implements OnInit {
     table.filterGlobal(text.value, 'contains');
   }
 
-  showTranslation(name: string): void {
+  showTranslation(id: number, name: string): void {
     let deviceName = name.replace(".local", "");
     const url = `http://Vpn.indoortv116.ru/${deviceName}`;
     this.ref = this.dialogService.open(VideoStreamComponent, {
@@ -45,7 +45,9 @@ export class DevicesListComponent implements OnInit {
       baseZIndex: 10000,
       maximizable: true,
       data: {
-        url: url
+        id: id,
+        url: url,
+        deviceName: deviceName,
       }
     });
   }

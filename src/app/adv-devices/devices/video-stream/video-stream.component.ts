@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { DynamicDialogConfig  } from 'primeng/dynamicdialog';
 import { DomSanitizer } from '@angular/platform-browser';
-import { VideoImageService } from 'src/app/services/video-image.service';
+import { CreateVideoRequest, VideoImageService } from 'src/app/services/video-image.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-video-stream',
@@ -14,11 +15,31 @@ export class VideoStreamComponent {
   constructor(
     private videoService: VideoImageService,
     private dialogService: DynamicDialogConfig,
+    public messageService: MessageService,
     private domSanitizer: DomSanitizer) {
   }
 
   getUrl(){
     return this.domSanitizer.bypassSecurityTrustResourceUrl(this.dialogService.data.url);
+  }
+
+  recordVideo(){
+    console.log(this.dialogService.data);
+    let recordVideoRequest: CreateVideoRequest  = {
+      id: this.dialogService.data.id,
+      deviceName: this.dialogService.data.deviceName,
+      url: this.dialogService.data.url,
+      duration: 60
+    }
+
+    this.videoService.recordVideo(recordVideoRequest).subscribe({
+      next: result => {
+        this.messageService.add({ severity: 'success', summary: 'Начинается запись ролика. Он будет готов через несколько минут.' });
+      },
+      error: error => {
+        console.log(error);
+      }
+    })
   }
 
   getFrame(){

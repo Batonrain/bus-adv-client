@@ -13,7 +13,18 @@ export class VideoImageService {
     this.baseUrl = environment.ApiBase + environment.VideoApi;
   }
 
+  recordVideo(request: CreateVideoRequest): Observable<any> {
+    return this.http.post(`${this.baseUrl}/RecordVideo`, request);
+  }
+
   getCurrentFrame(videoUrl: string): Observable<Blob> {
     return this.http.get(`${this.baseUrl}/GetCurrentFrame?videoUrl=${encodeURIComponent(videoUrl)}`, { responseType: 'blob' });
   }
+}
+
+export interface CreateVideoRequest {
+  id: number;
+  url: string;
+  deviceName: string;
+  duration: number;
 }
