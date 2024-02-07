@@ -1,0 +1,8 @@
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Распределяет пространство между и вокруг элементов контейнера */
+}
+
+.right-aligned {
+    margin-left: auto; /* Автоматический отступ слева выравнивает кнопку по правому краю */
+}
