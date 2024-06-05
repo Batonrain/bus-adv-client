@@ -6,4 +6,5 @@ export const environment = {
     UserApi:'User',
     PlaylistApi:'Playlist',
     VideoApi:'Video',
+    UserDeviceApi:'UserDevices'
 };

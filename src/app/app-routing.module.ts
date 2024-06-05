@@ -6,10 +6,11 @@ import { DevicesListComponent } from './adv-devices/devices/devices-list/devices
 import { CitiesListComponent } from './adv-devices/cities/cities-list/cities-list.component';
 import { AllocationsListComponent } from './adv-devices/allocations/allocations-list/allocations-list.component';
 import { PlaylistComponent } from './adv-devices/playlist/playlist.component';
+import { UserManagerComponent } from './admin/user-manager/user-manager.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'users', component: UserManagerComponent },
   { path: 'devices', component: DevicesListComponent },
   { path: 'cities', component: CitiesListComponent},
   { path: 'allocations', component: AllocationsListComponent},

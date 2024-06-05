@@ -1,0 +1,13 @@
+<p-dialog header="Change User Role" [(visible)]="visible" [modal]="true" [closable]="false">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="role">New Role</label>
+        <input id="role" type="text" pInputText [(ngModel)]="newRole" />
+      </div>
+    </div>
+    <p-footer>
+      <button pButton label="Save" icon="pi pi-check" (click)="onSaveRole()"></button>
+      <button pButton label="Cancel" icon="pi pi-times" (click)="onClose.emit()"></button>
+    </p-footer>
+  </p-dialog>
+  

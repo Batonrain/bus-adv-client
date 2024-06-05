@@ -1,29 +1,45 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-const API_URL = 'http://localhost:8080/api/test/';
+import { environment } from 'src/environments/environment';
+import { ShortUserInfo } from '../models/short-user-info,model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient) {}
+  private baseUrl = '';
 
-  getPublicContent(): Observable<any> {
-    return this.http.get(API_URL + 'all', { responseType: 'text' });
+  constructor(private http: HttpClient) {
+    this.baseUrl = environment.ApiBase + environment.UserApi;
   }
 
-  getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + 'user', { responseType: 'text' });
-  }
-  
-  getModeratorBoard(): Observable<any> {
-    return this.http.get(API_URL + 'mod', { responseType: 'text' });
+  getTechnicians(): Observable<ShortUserInfo[]> {
+    return this.http.get<ShortUserInfo[]>(`${this.baseUrl}`);
   }
 
-  getAdminBoard(): Observable<any> {
-    return this.http.get(API_URL + 'admin', { responseType: 'text' });
+  getUsers(): Observable<ShortUserInfo[]> {
+    return this.http.get<ShortUserInfo[]>(this.baseUrl);
+  }
+
+  createUser(user: ShortUserInfo): Observable<ShortUserInfo> {
+    return this.http.post<ShortUserInfo>(this.baseUrl, user);
+  }
+
+  updateUser(id: number, user: ShortUserInfo): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/${id}`, user);
+  }
+
+  deleteUser(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
+  updateUserRole(id: number, role: string): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/${id}/role`, { role });
+  }
+
+  resetPassword(id: number): Observable<string> {
+    return this.http.post<string>(`${this.baseUrl}/${id}/reset-password`, {});
   }
 }

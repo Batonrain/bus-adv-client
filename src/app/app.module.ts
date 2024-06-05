@@ -22,6 +22,7 @@ import { AddTechniciansComponent } from './adv-devices/technicians/add-technicia
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ChangeDeviceNameComponent } from './adv-devices/devices/change-device-name/change-device-name.component';
 import { PlaylistComponent } from './adv-devices/playlist/playlist.component';
+import { UserManagerComponent } from './admin/user-manager/user-manager.component';
 
 // PrimeNG
 import { ToastModule } from 'primeng/toast';
@@ -41,6 +42,11 @@ import { ListboxModule } from 'primeng/listbox';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ChipModule } from 'primeng/chip';
 import { FieldsetModule } from 'primeng/fieldset';
+import { CardModule } from 'primeng/card';
+import { UserFormComponent } from './admin/user-form/user-form.component';
+import { UserRoleDialogComponent } from './admin/user-role-dialog/user-role-dialog.component';
+import { UserResetPasswordComponent } from './admin/user-reset-password/user-reset-password.component';
+
 
 @NgModule({
   declarations: [
@@ -58,6 +64,10 @@ import { FieldsetModule } from 'primeng/fieldset';
     AddTechniciansComponent,
     ChangeDeviceNameComponent,
     PlaylistComponent,
+    UserManagerComponent,
+    UserFormComponent,
+    UserRoleDialogComponent,
+    UserResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +92,7 @@ import { FieldsetModule } from 'primeng/fieldset';
     CheckboxModule,
     ChipModule,
     FieldsetModule,
+    CardModule,
   ],
   providers: [
     {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import jwt_decode from "jwt-decode";
-import { User } from '../models/user.model';
+import { UserAuth } from '../models/user-auth.model';
 
 
 @Injectable({
@@ -17,7 +17,7 @@ export class StorageService {
     window.localStorage.clear();
   }
 
-  public saveUserInfo(saveUserInfo: User): void {
+  public saveUserInfo(saveUserInfo: UserAuth): void {
     window.localStorage.removeItem(this.TOKEN_NAME);
     window.localStorage.setItem(this.TOKEN_NAME, saveUserInfo.token);
     
@@ -26,6 +26,9 @@ export class StorageService {
 
     window.localStorage.removeItem(this.EXPIRATION);
     window.localStorage.setItem(this.EXPIRATION, JSON.stringify(saveUserInfo.expiration));
+
+    window.localStorage.removeItem(this.USER_NAME);
+    window.localStorage.setItem(this.USER_NAME, JSON.stringify(saveUserInfo.userName));
   }
 
   public getUser(): string {

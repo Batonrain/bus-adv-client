@@ -9,43 +9,31 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   title = 'Личный кабинет';
-  private roles: string[] = [];
-  isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
-  username?: string;
+  isAdmin: boolean = false;
 
   constructor(private storageService: StorageService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.storageService.isLoggedIn();
-
-    // if (this.isLoggedIn) {
-    //   const user = this.storageService.getUser().user;
-
-    //   switch(user.role){
-    //     case "Admin":
-    //       this.showAdminBoard = true;
-    //       break;
-    //     case "Moderator":
-    //       this.showModeratorBoard = true;
-    //       break; 
-    //     }
-      
-    //   this.username = user.username;
-    // }
+    let isLoggedIn = this.storageService.isLoggedIn();
+    if (isLoggedIn) {
+      let roles = this.storageService.getRoles();
+      this.isAdmin = this.containsAdmin(roles);
+    }
   }
 
   logout(): void {
     this.authService.logout().subscribe({
       next: res => {
         this.storageService.clean();
-
         window.location.reload();
       },
       error: err => {
         console.log(err);
       }
     });
+  }
+
+  containsAdmin(strings: string[]): boolean {
+    return strings.some(str => str.toLowerCase() === 'admin');
   }
 }

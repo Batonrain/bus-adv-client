@@ -1,0 +1,26 @@
+<p-card header="User Form">
+    <form [formGroup]="userForm" (ngSubmit)="onSave()">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="fullName">Full Name</label>
+          <input id="fullName" type="text" pInputText formControlName="fullName" />
+        </div>
+        <div class="p-field">
+          <label for="email">Email</label>
+          <input id="email" type="email" pInputText formControlName="email" />
+        </div>
+        <div class="p-field">
+          <label for="password">Password</label>
+          <input id="password" type="password" pInputText formControlName="password" />
+        </div>
+        <div class="p-field">
+          <label for="role">Role</label>
+          <input id="role" type="text" pInputText formControlName="role" />
+        </div>
+        <div class="p-field">
+          <button pButton type="submit" label="Save"></button>
+        </div>
+      </div>
+    </form>
+  </p-card>
+  

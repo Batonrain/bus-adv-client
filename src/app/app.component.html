@@ -2,9 +2,9 @@
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <a href="#" class="navbar-brand">Рекламный кабинет</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <!-- <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">Пользователь</a>
-      </li> -->
+      <li class="nav-item" *ngIf="isAdmin">
+        <a href="/users" class="nav-link" routerLink="users">Пользователь</a>
+      </li>
       <li class="nav-item">
         <a href="/devices" class="nav-link" routerLink="devices">Устройства</a>
       </li>
