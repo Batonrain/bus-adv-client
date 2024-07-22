@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { ShortUserInfo } from 'src/app/models/short-user-info,model';
+import { ShortUserInfo } from 'src/app/models/short-user-info.model';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({

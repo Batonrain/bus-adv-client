@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ShortUserInfo } from '../models/short-user-info,model';
+import { ShortUserInfo } from '../models/short-user-info.model';
+import { Role } from '../models/role.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,15 +21,19 @@ export class UserService {
   }
 
   getUsers(): Observable<ShortUserInfo[]> {
-    return this.http.get<ShortUserInfo[]>(this.baseUrl);
+    return this.http.get<ShortUserInfo[]>(`${this.baseUrl}/users`);
+  }
+
+  getRoles(): Observable<Role[]> {
+    return this.http.get<Role[]>(`${this.baseUrl}/roles`);
   }
 
   createUser(user: ShortUserInfo): Observable<ShortUserInfo> {
     return this.http.post<ShortUserInfo>(this.baseUrl, user);
   }
 
-  updateUser(id: number, user: ShortUserInfo): Observable<void> {
-    return this.http.put<void>(`${this.baseUrl}/${id}`, user);
+  updateUser(user: ShortUserInfo): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/update`, user);
   }
 
   deleteUser(id: number): Observable<void> {

@@ -1,27 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { ShortUserInfo } from 'src/app/models/short-user-info,model';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ShortUserInfo } from 'src/app/models/short-user-info.model';
 import { UserService } from 'src/app/services/user.service';
+import { UserFormComponent } from '../user-form/user-form.component';
 
 @Component({
   selector: 'app-user-management',
   templateUrl: 'user-manager.component.html',
-  styleUrls: ['user-manager.component.css']
+  styleUrls: ['user-manager.component.css'],
+  providers: [MessageService, ConfirmationService, DialogService],
 })
 export class UserManagerComponent implements OnInit {
   users: ShortUserInfo[] = [];
-  filteredUsers: ShortUserInfo[] = [];
   searchForm: FormGroup;
   selectedUser: ShortUserInfo | null = null;
   displayRoleDialog: boolean = false;
   displayResetPasswordDialog: boolean = false;
+  ref: DynamicDialogRef | undefined;
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    public dialogService: DialogService,
   ) {
     this.searchForm = this.fb.group({
       name: [''],
@@ -35,17 +39,28 @@ export class UserManagerComponent implements OnInit {
 
   loadUsers(): void {
     this.userService.getUsers().subscribe(users => {
+      console.log('Users', users);
       this.users = users;
-      this.filteredUsers = users;
     });
   }
 
-  onSearch(): void {
-    const { name, email } = this.searchForm.value;
-    this.filteredUsers = this.users.filter(user =>
-      user.fullName.toLowerCase().includes(name.toLowerCase()) &&
-      user.email.toLowerCase().includes(email.toLowerCase())
-    );
+  editUser(user: ShortUserInfo): void {
+    this.ref = this.dialogService.open(UserFormComponent, {
+      header: `Редактирование ${user.firstName} ${user.secondName}`,
+      width: '60%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: false,
+      data: {
+        user: user
+      }
+    });
+
+    this.ref.onClose.subscribe((result: boolean) => {
+      if (result) {
+        this.loadUsers();
+      }
+    });
   }
 
   onAddUser(): void {

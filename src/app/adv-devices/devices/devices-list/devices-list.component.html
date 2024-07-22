@@ -1,5 +1,5 @@
 <div class="card">
-    <p-table #devicesTable [value]="devices" dataKey="name"
+    <p-table #devicesTable [value]="devices" dataKey="name" [paginator]="true" [rows]="10"
         [globalFilterFields]="['name', 'city.name', 'technician.firstName', 'technician.lastName']"
         styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="caption">
