@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ShortUserInfo } from '../models/short-user-info.model';
 import { Role } from '../models/role.model';
+import { UpdateUserInfo } from '../models/update-user-info.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class UserService {
     return this.http.post<ShortUserInfo>(this.baseUrl, user);
   }
 
-  updateUser(user: ShortUserInfo): Observable<void> {
+  updateUser(user: UpdateUserInfo): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/update`, user);
   }
 
@@ -40,7 +41,7 @@ export class UserService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  updateUserRole(id: number, role: string): Observable<void> {
+  updateUserRole(id: string, role: string): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}/${id}/role`, { role });
   }
 

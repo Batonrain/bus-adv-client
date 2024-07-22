@@ -35,7 +35,6 @@ export class ChangeDeviceNameComponent implements OnInit {
     this.loadAllocations();
     this.cleanedName = this.dialogService.data.currentName.replace('.local', '');
     const parts = this.cleanedName.split('-');
-    console.log(parts);
     this.form = this.fb.group({
       oldPart1: [{value: parts[0], disabled: true}],
       oldPart2: [{value: parts[1], disabled: true}],
@@ -51,8 +50,6 @@ export class ChangeDeviceNameComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       this.buttonDisabled = true;
-      console.log(this.form.value)
-      console.log(this.cleanedName)
       const newName = `${this.form.value.newPart1.shortName}-${this.form.value.newPart2.shortName}-${this.form.value.newPart3}-${this.form.value.newPart4}`;
       let model: ChangeDeviceNetNameModel = {
         currentName: this.cleanedName,

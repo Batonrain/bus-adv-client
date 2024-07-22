@@ -1,7 +1,7 @@
 import { Role } from "./role.model";
 
 export interface ShortUserInfo {
-    id: number;
+    id: string;
     firstName: string;
     secondName: string;
     email: string;

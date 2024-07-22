@@ -20,12 +20,12 @@ export class UserResetPasswordComponent {
 
   onResetPassword(): void {
     if (this.user) {
-      this.userService.resetPassword(this.user.id).subscribe(newPassword => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Password reset successfully' });
-        // Display the new password to the user in a way they can copy it
-        this.messageService.add({ severity: 'info', summary: 'New Password', detail: newPassword });
-        this.onClose.emit();
-      });
+      // this.userService.resetPassword(this.user.id).subscribe(newPassword => {
+      //   this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Password reset successfully' });
+      //   // Display the new password to the user in a way they can copy it
+      //   this.messageService.add({ severity: 'info', summary: 'New Password', detail: newPassword });
+      //   this.onClose.emit();
+      // });
     }
   }
 }

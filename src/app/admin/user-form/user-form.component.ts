@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Role } from 'src/app/models/role.model';
 import { ShortUserInfo } from 'src/app/models/short-user-info.model';
+import { UpdateUserInfo } from 'src/app/models/update-user-info.model';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserFormComponent implements OnInit {
   userForm: FormGroup;
-  userId: number | undefined;
+  userId: string | undefined;
   roles: Role[] | undefined;
 
   constructor(
@@ -47,16 +48,22 @@ export class UserFormComponent implements OnInit {
 
   onSave(): void {
     if (this.userForm.valid) {
-      let user = this.userForm.value;
+      let user: UpdateUserInfo = {
+        id: this.userId,
+        firstName: this.userForm.value.firstName,
+        secondName: this.userForm.value.secondName,
+        email: this.userForm.value.email,
+        roleId: this.userForm.value.role.id
+      };
       if (user) {
-        user.id = this.userId;
-        console.log(`user to update:`, user)
         this.userService.updateUser(user).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User updated successfully' });
+          this.ref.close(true)
         });
       } else {
         this.userService.createUser(user).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User created successfully' });
+          this.ref.close(true)
         });
       }
     } else {
@@ -66,7 +73,6 @@ export class UserFormComponent implements OnInit {
 
   loadRoles(): void {
     this.userService.getRoles().subscribe(roles => {
-      console.log('Roles', roles);
       this.roles = roles;
     });
   }

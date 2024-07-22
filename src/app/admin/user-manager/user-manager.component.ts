@@ -39,7 +39,6 @@ export class UserManagerComponent implements OnInit {
 
   loadUsers(): void {
     this.userService.getUsers().subscribe(users => {
-      console.log('Users', users);
       this.users = users;
     });
   }
