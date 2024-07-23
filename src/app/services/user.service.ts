@@ -49,4 +49,27 @@ export class UserService {
   resetPassword(id: number): Observable<string> {
     return this.http.post<string>(`${this.baseUrl}/${id}/reset-password`, {});
   }
+
+  generatePassword(): string {
+    const length = 12; // Длина пароля
+    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const specialChars = "!@#$%^&*()_+[]{}|;:,.<>?";
+  
+    let password = '';
+    for (let i = 0; i < length - 4; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset[randomIndex];
+    }
+  
+    // Обязательно добавляем по одному символу каждого типа
+    password += specialChars[Math.floor(Math.random() * specialChars.length)];
+    password += "abcdefghijklmnopqrstuvwxyz"[Math.floor(Math.random() * 26)];
+    password += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)];
+    password += "0123456789"[Math.floor(Math.random() * 10)];
+  
+    // Перемешиваем пароль, чтобы символы не были в предсказуемом порядке
+    password = password.split('').sort(() => 0.5 - Math.random()).join('');
+  
+    return password;
+  }
 }

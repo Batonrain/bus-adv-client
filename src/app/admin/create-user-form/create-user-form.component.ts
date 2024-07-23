@@ -60,26 +60,7 @@ export class CreateUserFormComponent implements OnInit {
   }
 
   generatePassword() {
-    const length = 12; // Длина пароля
-    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    const specialChars = "!@#$%^&*()_+[]{}|;:,.<>?";
-  
-    let password = '';
-    for (let i = 0; i < length - 4; i++) {
-      const randomIndex = Math.floor(Math.random() * charset.length);
-      password += charset[randomIndex];
-    }
-  
-    // Обязательно добавляем по одному символу каждого типа
-    password += specialChars[Math.floor(Math.random() * specialChars.length)];
-    password += "abcdefghijklmnopqrstuvwxyz"[Math.floor(Math.random() * 26)];
-    password += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)];
-    password += "0123456789"[Math.floor(Math.random() * 10)];
-  
-    // Перемешиваем пароль, чтобы символы не были в предсказуемом порядке
-    password = password.split('').sort(() => 0.5 - Math.random()).join('');
-  
+    let password = this.userService.generatePassword();
     this.userForm.patchValue({ password: password });
   }
-  
 }
