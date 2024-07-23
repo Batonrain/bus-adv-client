@@ -1,25 +1,33 @@
 <p-card header="Управление пользователями">
-    <p-table [value]="users">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Имя</th>
-          <th>Email</th>
-          <th>Роль</th>
-          <th></th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-user>
-        <tr>
-          <td>{{user.firstName}} {{user.secondName}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.role.name}}</td>
-          <td>
-            <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editUser(user)"></button>
-            <button pButton icon="pi pi-lock" class="p-button-rounded p-button-warning p-mr-2" (click)="onChangeRole(user)"></button>
-            <button pButton icon="pi pi-refresh" class="p-button-rounded p-button-info p-mr-2" (click)="onResetPassword(user)"></button>
-            <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="onDeleteUser(user)"></button>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </p-card>
+  <div class="p-d-flex p-jc-end p-mb-3" style="margin-bottom: 15px;">
+    <button pButton label="Добавить пользователя" icon="pi pi-plus" class="p-button-rounded p-button-success p-mb-3"
+      (click)="onAddUser()"></button>
+  </div>
+  <p-table [value]="users">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Имя</th>
+        <th>Email</th>
+        <th>Роль</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{user.firstName}} {{user.secondName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.role.name}}</td>
+        <td>
+          <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+            (click)="editUser(user)"></button>
+          <button pButton icon="pi pi-lock" class="p-button-rounded p-button-warning p-mr-2"
+            (click)="onChangeRole(user)"></button>
+          <button pButton icon="pi pi-refresh" class="p-button-rounded p-button-info p-mr-2"
+            (click)="onResetPassword(user)"></button>
+          <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger"
+            (click)="onDeleteUser(user)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>

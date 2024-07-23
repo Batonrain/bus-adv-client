@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -16,6 +16,7 @@ export class UserFormComponent implements OnInit {
   userForm: FormGroup;
   userId: string | undefined;
   roles: Role[] | undefined;
+  isNewUser: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -55,17 +56,10 @@ export class UserFormComponent implements OnInit {
         email: this.userForm.value.email,
         roleId: this.userForm.value.role.id
       };
-      if (user) {
-        this.userService.updateUser(user).subscribe(() => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User updated successfully' });
-          this.ref.close(true)
-        });
-      } else {
-        this.userService.createUser(user).subscribe(() => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User created successfully' });
-          this.ref.close(true)
-        });
-      }
+      this.userService.updateUser(user).subscribe(() => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User updated successfully' });
+        this.ref.close(true)
+      });
     } else {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please fill all required fields' });
     }

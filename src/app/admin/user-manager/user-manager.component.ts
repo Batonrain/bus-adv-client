@@ -5,6 +5,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ShortUserInfo } from 'src/app/models/short-user-info.model';
 import { UserService } from 'src/app/services/user.service';
 import { UserFormComponent } from '../user-form/user-form.component';
+import { CreateUserFormComponent } from '../create-user-form/create-user-form.component';
 
 @Component({
   selector: 'app-user-management',
@@ -51,7 +52,8 @@ export class UserManagerComponent implements OnInit {
       baseZIndex: 10000,
       maximizable: false,
       data: {
-        user: user
+        user: user,
+        isNewUser: false,
       }
     });
 
@@ -63,8 +65,19 @@ export class UserManagerComponent implements OnInit {
   }
 
   onAddUser(): void {
-    this.selectedUser = null;
-    // Logic to show user form for adding a new user
+    this.ref = this.dialogService.open(CreateUserFormComponent, {
+      header: `Добавить нового пользователя`,
+      width: '60%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: false,
+    });
+
+    this.ref.onClose.subscribe((result: boolean) => {
+      if (result) {
+        this.loadUsers();
+      }
+    });
   }
 
   onEditUser(user: ShortUserInfo): void {

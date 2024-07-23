@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { ShortUserInfo } from '../models/short-user-info.model';
 import { Role } from '../models/role.model';
 import { UpdateUserInfo } from '../models/update-user-info.model';
+import { CreateUserInfo } from '../models/create-user-info.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,8 @@ export class UserService {
     return this.http.get<Role[]>(`${this.baseUrl}/roles`);
   }
 
-  createUser(user: ShortUserInfo): Observable<ShortUserInfo> {
-    return this.http.post<ShortUserInfo>(this.baseUrl, user);
+  createUser(user: CreateUserInfo): Observable<ShortUserInfo> {
+    return this.http.post<ShortUserInfo>(`${this.baseUrl}/create`, user);
   }
 
   updateUser(user: UpdateUserInfo): Observable<void> {
