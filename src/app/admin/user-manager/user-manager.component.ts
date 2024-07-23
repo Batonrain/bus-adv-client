@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, ConfirmEventType, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ShortUserInfo } from 'src/app/models/short-user-info.model';
 import { UserService } from 'src/app/services/user.service';
@@ -22,10 +22,10 @@ export class UserManagerComponent implements OnInit {
   ref: DynamicDialogRef | undefined;
 
   constructor(
-    private fb: FormBuilder,
-    private userService: UserService,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService,
+    public fb: FormBuilder,
+    public userService: UserService,
+    public messageService: MessageService,
+    public confirmationService: ConfirmationService,
     public dialogService: DialogService,
   ) {
     this.searchForm = this.fb.group({
@@ -80,15 +80,6 @@ export class UserManagerComponent implements OnInit {
     });
   }
 
-  onEditUser(user: ShortUserInfo): void {
-    this.selectedUser = user;
-    // Logic to show user form for editing user
-  }
-
-  onChangeRole(user: ShortUserInfo): void {
-    this.selectedUser = user;
-    this.displayRoleDialog = true;
-  }
 
   onResetPassword(user: ShortUserInfo): void {
     this.selectedUser = user;
@@ -96,14 +87,24 @@ export class UserManagerComponent implements OnInit {
   }
 
   onDeleteUser(user: ShortUserInfo): void {
-    // this.confirmationService.confirm({
-    //   message: `Are you sure you want to delete user ${user.fullName}?`,
-    //   accept: () => {
-    //     this.userService.deleteUser(user.id).subscribe(() => {
-    //       this.loadUsers();
-    //       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User deleted successfully' });
-    //     });
-    //   }
-    // });
+    this.confirmationService.confirm({
+      message: `Are you sure you want to delete user?`,
+      accept: () => {
+        this.userService.deleteUser(user.id).subscribe(() => {
+          this.loadUsers();
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User deleted successfully' });
+        });
+      },
+      reject: (type: ConfirmEventType) => {
+        switch (type) {
+          case ConfirmEventType.REJECT:
+            this.messageService.add({ severity: 'error', summary: 'Отмена удаления', detail: 'Устройство не будет удалено' });
+            break;
+          case ConfirmEventType.CANCEL:
+            this.messageService.add({ severity: 'warn', summary: 'Отмена удаления', detail: 'Устройство не будет удалено' });
+            break;
+        }
+      }
+    });
   }
 }
