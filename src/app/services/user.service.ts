@@ -6,6 +6,7 @@ import { ShortUserInfo } from '../models/short-user-info.model';
 import { Role } from '../models/role.model';
 import { UpdateUserInfo } from '../models/update-user-info.model';
 import { CreateUserInfo } from '../models/create-user-info.model';
+import { UpdatePasswordModel } from '../models/update-password.model';
 
 @Injectable({
   providedIn: 'root'
@@ -46,8 +47,8 @@ export class UserService {
     return this.http.put<void>(`${this.baseUrl}/${id}/role`, { role });
   }
 
-  resetPassword(id: number): Observable<string> {
-    return this.http.post<string>(`${this.baseUrl}/${id}/reset-password`, {});
+  resetPassword(model: UpdatePasswordModel): Observable<string> {
+    return this.http.post<string>(`${this.baseUrl}/update-password`, model);
   }
 
   generatePassword(): string {

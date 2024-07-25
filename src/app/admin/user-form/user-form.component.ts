@@ -57,11 +57,11 @@ export class UserFormComponent implements OnInit {
         roleId: this.userForm.value.role.id
       };
       this.userService.updateUser(user).subscribe(() => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User updated successfully' });
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Пользовател успешно обновлен' });
         this.ref.close(true)
       });
     } else {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please fill all required fields' });
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Пожалуйста, заполните все поля' });
     }
   }
 

@@ -45,11 +45,11 @@ export class CreateUserFormComponent implements OnInit {
         password: this.userForm.value.password,
       };
       this.userService.createUser(user).subscribe(() => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User created successfully' });
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Пользователь успешно создан' });
         this.ref.close(true)
       });
     } else {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please fill all required fields' });
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Пожалуйста, заполните все поля' });
     }
   }
 

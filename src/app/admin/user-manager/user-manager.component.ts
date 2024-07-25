@@ -6,6 +6,7 @@ import { ShortUserInfo } from 'src/app/models/short-user-info.model';
 import { UserService } from 'src/app/services/user.service';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { CreateUserFormComponent } from '../create-user-form/create-user-form.component';
+import { UserResetPasswordComponent } from '../user-reset-password/user-reset-password.component';
 
 @Component({
   selector: 'app-user-management',
@@ -53,7 +54,6 @@ export class UserManagerComponent implements OnInit {
       maximizable: false,
       data: {
         user: user,
-        isNewUser: false,
       }
     });
 
@@ -80,28 +80,41 @@ export class UserManagerComponent implements OnInit {
     });
   }
 
-
   onResetPassword(user: ShortUserInfo): void {
-    this.selectedUser = user;
-    this.displayResetPasswordDialog = true;
+    this.ref = this.dialogService.open(UserResetPasswordComponent, {
+      header: `Сброс пароля для ${user.firstName} ${user.secondName}`,
+      width: '15%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: false,
+      data: {
+        user: user,
+      }
+    });
+
+    this.ref.onClose.subscribe((result: boolean) => {
+      if (result) {
+        this.loadUsers();
+      }
+    });
   }
 
   onDeleteUser(user: ShortUserInfo): void {
     this.confirmationService.confirm({
-      message: `Are you sure you want to delete user?`,
+      message: `Вы уверены, что хотите удалить пользователя??`,
       accept: () => {
         this.userService.deleteUser(user.id).subscribe(() => {
           this.loadUsers();
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User deleted successfully' });
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Пользователь успешно удален' });
         });
       },
       reject: (type: ConfirmEventType) => {
         switch (type) {
           case ConfirmEventType.REJECT:
-            this.messageService.add({ severity: 'error', summary: 'Отмена удаления', detail: 'Устройство не будет удалено' });
+            this.messageService.add({ severity: 'error', summary: 'Отмена удаления', detail: 'Пользователь не будет удален' });
             break;
           case ConfirmEventType.CANCEL:
-            this.messageService.add({ severity: 'warn', summary: 'Отмена удаления', detail: 'Устройство не будет удалено' });
+            this.messageService.add({ severity: 'warn', summary: 'Отмена удаления', detail: 'Пользователь не будет удален' });
             break;
         }
       }
