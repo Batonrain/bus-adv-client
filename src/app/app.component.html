@@ -3,18 +3,18 @@
     <a href="#" class="navbar-brand">Рекламный кабинет</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item" *ngIf="isAdmin">
-        <a href="/users" class="nav-link" routerLink="users">Пользователь</a>
+        <a href="/users" class="nav-link" routerLink="users">Пользователи</a>
       </li>
       <li class="nav-item">
         <a href="/devices" class="nav-link" routerLink="devices">Устройства</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isAdmin">
         <a href="/cities" class="nav-link" routerLink="cities">Города</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isAdmin">
         <a href="/allocations" class="nav-link" routerLink="allocations">Типы размещений</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isAdmin">
         <a href="/playlists" class="nav-link" routerLink="playlists">Плэйлисты</a>
       </li>
     </ul>
