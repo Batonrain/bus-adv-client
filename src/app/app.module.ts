@@ -47,6 +47,8 @@ import { UserFormComponent } from './admin/user-form/user-form.component';
 import { UserRoleDialogComponent } from './admin/user-role-dialog/user-role-dialog.component';
 import { UserResetPasswordComponent } from './admin/user-reset-password/user-reset-password.component';
 import { CreateUserFormComponent } from './admin/create-user-form/create-user-form.component';
+import { WatchersTableComponent } from './admin/watchers-panel/watchers-table/watchers-table.component';
+import { CreateWatcherFormComponent } from './admin/watchers-panel/create-watcher-form/create-watcher-form.component';
 
 
 @NgModule({
@@ -70,6 +72,8 @@ import { CreateUserFormComponent } from './admin/create-user-form/create-user-fo
     UserRoleDialogComponent,
     UserResetPasswordComponent,
     CreateUserFormComponent,
+    WatchersTableComponent,
+    CreateWatcherFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,25 @@
+<p-card>
+    <form [formGroup]="watcherForm" (ngSubmit)="onSave()">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="name">Имя</label>
+          <input id="name" type="text" pInputText formControlName="name" />
+        </div>
+        <div class="p-field">
+          <label for="email">Email</label>
+          <input id="email" type="email" pInputText formControlName="email" />
+        </div>
+        <div class="p-field">
+          <label for="password">Пароль</label>
+          <div class="p-inputgroup">
+            <input id="password" type="text" pInputText formControlName="password" />
+            <button pButton type="button" icon="pi pi-refresh" (click)="generatePassword()"></button>
+          </div>
+        </div>
+        <div class="p-field">
+          <button pButton type="submit" label="Сохранить"></button>
+        </div>
+      </div>
+    </form>
+  </p-card>
+  

@@ -4,6 +4,7 @@ export const environment = {
     AllocationType:'AllocationType',
     DeviceApi:'Device',
     UserApi:'User',
+    WatcherApi:'Watcher',
     PlaylistApi:'Playlist',
     VideoApi:'Video',
     UserDeviceApi:'UserDevices'

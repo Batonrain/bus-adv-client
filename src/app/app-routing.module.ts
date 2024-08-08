@@ -7,10 +7,12 @@ import { CitiesListComponent } from './adv-devices/cities/cities-list/cities-lis
 import { AllocationsListComponent } from './adv-devices/allocations/allocations-list/allocations-list.component';
 import { PlaylistComponent } from './adv-devices/playlist/playlist.component';
 import { UserManagerComponent } from './admin/user-manager/user-manager.component';
+import { WatchersTableComponent } from './admin/watchers-panel/watchers-table/watchers-table.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UserManagerComponent },
+  { path: 'watchers', component: WatchersTableComponent },
   { path: 'devices', component: DevicesListComponent },
   { path: 'cities', component: CitiesListComponent},
   { path: 'allocations', component: AllocationsListComponent},
