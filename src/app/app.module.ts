@@ -5,25 +5,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
-// Внутренние компоненты
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { CitiesListComponent } from './adv-devices/cities/cities-list/cities-list.component';
-import { DevicesListComponent } from './adv-devices/devices/devices-list/devices-list.component';
-import { LoginComponent } from './auth/login/login.component';
-import { ProfileComponent } from './profile/profile/profile.component';
-import { VideoStreamComponent } from './adv-devices/devices/video-stream/video-stream.component';
-import { FilesListComponent } from './adv-devices/devices/files-list/files-list.component';
-import { AddCityComponent } from './adv-devices/cities/add-city/add-city.component';
-import { AddAllocationComponent } from './adv-devices/allocations/add-allocation/add-allocation.component';
-import { AllocationsListComponent } from './adv-devices/allocations/allocations-list/allocations-list.component';
-import { TechniciansListComponent } from './adv-devices/technicians/technicians-list/technicians-list.component';
-import { AddTechniciansComponent } from './adv-devices/technicians/add-technicians/add-technicians.component';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { ChangeDeviceNameComponent } from './adv-devices/devices/change-device-name/change-device-name.component';
-import { PlaylistComponent } from './adv-devices/playlist/playlist.component';
-import { UserManagerComponent } from './admin/user-manager/user-manager.component';
-
 // PrimeNG
 import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
@@ -43,13 +24,33 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ChipModule } from 'primeng/chip';
 import { FieldsetModule } from 'primeng/fieldset';
 import { CardModule } from 'primeng/card';
+import { PickListModule } from 'primeng/picklist';
+
+// Внутренние компоненты
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { CitiesListComponent } from './adv-devices/cities/cities-list/cities-list.component';
+import { DevicesListComponent } from './adv-devices/devices/devices-list/devices-list.component';
+import { LoginComponent } from './auth/login/login.component';
+import { ProfileComponent } from './profile/profile/profile.component';
+import { VideoStreamComponent } from './adv-devices/devices/video-stream/video-stream.component';
+import { FilesListComponent } from './adv-devices/devices/files-list/files-list.component';
+import { AddCityComponent } from './adv-devices/cities/add-city/add-city.component';
+import { AddAllocationComponent } from './adv-devices/allocations/add-allocation/add-allocation.component';
+import { AllocationsListComponent } from './adv-devices/allocations/allocations-list/allocations-list.component';
+import { TechniciansListComponent } from './adv-devices/technicians/technicians-list/technicians-list.component';
+import { AddTechniciansComponent } from './adv-devices/technicians/add-technicians/add-technicians.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ChangeDeviceNameComponent } from './adv-devices/devices/change-device-name/change-device-name.component';
+import { PlaylistComponent } from './adv-devices/playlist/playlist.component';
+import { UserManagerComponent } from './admin/user-manager/user-manager.component';
 import { UserFormComponent } from './admin/user-form/user-form.component';
 import { UserRoleDialogComponent } from './admin/user-role-dialog/user-role-dialog.component';
 import { UserResetPasswordComponent } from './admin/user-reset-password/user-reset-password.component';
 import { CreateUserFormComponent } from './admin/create-user-form/create-user-form.component';
 import { WatchersTableComponent } from './admin/watchers-panel/watchers-table/watchers-table.component';
 import { CreateWatcherFormComponent } from './admin/watchers-panel/create-watcher-form/create-watcher-form.component';
-
+import { WatcherDevicesPickerComponent } from './admin/watchers-panel/watcher-devices-picker/watcher-devices-picker.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { CreateWatcherFormComponent } from './admin/watchers-panel/create-watche
     CreateUserFormComponent,
     WatchersTableComponent,
     CreateWatcherFormComponent,
+    WatcherDevicesPickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,6 +101,7 @@ import { CreateWatcherFormComponent } from './admin/watchers-panel/create-watche
     ChipModule,
     FieldsetModule,
     CardModule,
+    PickListModule,
   ],
   providers: [
     {

@@ -14,7 +14,7 @@ import { CreateWatcherFormComponent } from '../create-watcher-form/create-watche
   styleUrls: ['./watchers-table.component.css'],
   providers: [MessageService, ConfirmationService, DialogService],
 })
-export class WatchersTableComponent  implements OnInit {
+export class WatchersTableComponent implements OnInit {
   watchers: WatcherInfoModel[] = [];
   searchForm: FormGroup;
   selectedUser: ShortUserInfo | null = null;
@@ -80,6 +80,10 @@ export class WatchersTableComponent  implements OnInit {
         this.loadWatchers();
       }
     });
+  }
+
+  onAddDevices(): void {
+
   }
 
   onDeleteWatcher(user: ShortUserInfo): void {
