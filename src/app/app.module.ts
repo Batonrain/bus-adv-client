@@ -103,6 +103,7 @@ import { WatcherDevicesPickerComponent } from './admin/watchers-panel/watcher-de
     FieldsetModule,
     CardModule,
     MultiSelectModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {

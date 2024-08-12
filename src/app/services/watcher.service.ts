@@ -11,6 +11,7 @@ import { CreateWatcherModel } from '../models/create-watcher.models';
 import { WatcherInfoModel } from '../models/watcher-info.model';
 import { AddDevicesToWatcherModel } from '../models/add-devices-to-watcher.model';
 import { WatcherDeviceModel } from '../models/watcher-device.model';
+import { UpdateWatcherModel } from '../models/update-watcher.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,7 @@ export class WatcherService {
     return this.http.post<WatcherInfoModel>(`${this.baseUrl}/create`, user);
   }
 
-  update(user: UpdateUserInfo): Observable<void> {
+  update(user: UpdateWatcherModel): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/update`, user);
   }
 

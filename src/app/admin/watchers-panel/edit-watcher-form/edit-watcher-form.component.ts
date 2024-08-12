@@ -2,16 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { CreateWatcherModel } from 'src/app/models/create-watcher.models';
+import { UpdateWatcherModel } from 'src/app/models/update-watcher.model';
 import { WatcherService } from 'src/app/services/watcher.service';
 
 @Component({
-  selector: 'app-create-watcher-form',
-  templateUrl: './create-watcher-form.component.html',
-  styleUrls: ['./create-watcher-form.component.css']
+  selector: 'app-edit-watcher-form',
+  templateUrl: './edit-watcher-form.component.html',
+  styleUrls: ['./edit-watcher-form.component.css']
 })
-export class CreateWatcherFormComponent implements OnInit {
+export class EditWatcherFormComponent implements OnInit {
   watcherForm: FormGroup;
+  userId: string | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -22,23 +23,26 @@ export class CreateWatcherFormComponent implements OnInit {
   ) {
     this.watcherForm = this.fb.group({
       name: ['', Validators.required],
-      email: ['test@mail.com', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-    });
+    });    
   }
 
   ngOnInit(): void {
+    let watcher: UpdateWatcherModel = this.dialogService.data.watcher;
+    this.userId = watcher.id;
+    this.watcherForm.patchValue(watcher);
   }
 
   onSave(): void {
     if (this.watcherForm.valid) {
-      let watcher: CreateWatcherModel = {
-        username: this.watcherForm.value.name,
-        email: this.watcherForm.value.email,
-        password: this.watcherForm.value.password,
+      let watcher: UpdateWatcherModel = {
+        id: this.userId,
+        username: this.watcherForm.value.firstName,
+        email: this.watcherForm.value.email
       };
-      this.watcherService.create(watcher).subscribe(() => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Пользователь успешно создан' });
+      this.watcherService.update(watcher).subscribe(() => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Пользовател успешно обновлен' });
         this.ref.close(true)
       });
     } else {

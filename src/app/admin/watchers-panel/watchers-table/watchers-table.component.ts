@@ -11,6 +11,7 @@ import { DevicesService } from 'src/app/services/devices.service';
 import { Device } from 'src/app/models/device.models';
 import { AddDevicesToWatcherModel } from 'src/app/models/add-devices-to-watcher.model';
 import { WatcherDeviceModel } from 'src/app/models/watcher-device.model';
+import { EditWatcherFormComponent } from '../edit-watcher-form/edit-watcher-form.component';
 
 @Component({
   selector: 'app-watchers-table',
@@ -53,25 +54,23 @@ export class WatchersTableComponent implements OnInit {
     });
   }
 
-  editWatcher(user: ShortUserInfo): void {
-    console.log('watcher devices', this.watchers[0].devices);
-    console.log('all devices', this.devices)
-    // this.ref = this.dialogService.open(UserFormComponent, {
-    //   header: `Редактирование ${user.firstName} ${user.secondName}`,
-    //   width: '60%',
-    //   contentStyle: { overflow: 'auto' },
-    //   baseZIndex: 10000,
-    //   maximizable: false,
-    //   data: {
-    //     user: user,
-    //   }
-    // });
+  editWatcher(watcher: WatcherInfoModel): void {
+    this.ref = this.dialogService.open(EditWatcherFormComponent, {
+      header: `Редактирование ${watcher.name}`,
+      width: '60%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: false,
+      data: {
+        watcher: watcher,
+      }
+    });
 
-    // this.ref.onClose.subscribe((result: boolean) => {
-    //   if (result) {
-    //     this.loadWatchers();
-    //   }
-    // });
+    this.ref.onClose.subscribe((result: boolean) => {
+      if (result) {
+        this.loadWatchers();
+      }
+    });
   }
 
   onAddWatcher(): void {
