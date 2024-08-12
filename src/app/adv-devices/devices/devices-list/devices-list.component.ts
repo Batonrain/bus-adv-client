@@ -161,12 +161,17 @@ export class DevicesListComponent implements OnInit {
     table.clear();
   }
 
-  getSeverity(isOnline: boolean): string {
-    if (isOnline) {
-      return 'success'
+  getSeverity(isOnline: boolean): 'success' | 'secondary' | 'info' | 'warning' | 'danger' | 'contrast' | undefined {
+    switch (isOnline) {
+      case true:
+        return 'success';
+      case false:
+        return 'danger';
+      default:
+        return 'info'; // В качестве примера
     }
-    return 'danger'
   }
+  
 
   getStatusText(isOnline: boolean): string {
     if (isOnline) {

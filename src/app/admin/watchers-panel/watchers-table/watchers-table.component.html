@@ -9,12 +9,17 @@
         <th>Название</th>
         <th>Почта</th>
         <th></th>
+        <th></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-watcher>
       <tr>
         <td>{{watcher.name}}</td>
         <td>{{watcher.email}}</td>
+        <td>
+          <p-multiSelect appendTo="body" [maxSelectedLabels]="3" [options]="devices" [(ngModel)]="selectedDevices"
+            optionLabel="name" display="chip" [showClear]="true" placeholder="выбрать устройства" />
+        </td>
         <td>
           <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2 mr-r-5"
             (click)="editWatcher(watcher)"></button>

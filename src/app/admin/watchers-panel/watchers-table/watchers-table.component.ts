@@ -7,6 +7,8 @@ import { WatcherInfoModel } from 'src/app/models/watcher-info.model';
 import { UserService } from 'src/app/services/user.service';
 import { WatcherService } from 'src/app/services/watcher.service';
 import { CreateWatcherFormComponent } from '../create-watcher-form/create-watcher-form.component';
+import { DevicesService } from 'src/app/services/devices.service';
+import { Device } from 'src/app/models/device.models';
 
 @Component({
   selector: 'app-watchers-table',
@@ -21,6 +23,8 @@ export class WatchersTableComponent implements OnInit {
   displayRoleDialog: boolean = false;
   displayResetPasswordDialog: boolean = false;
   ref: DynamicDialogRef | undefined;
+  public devices: Device[] = [];
+  public selectedDevices: Device[] = [];
 
   constructor(
     public fb: FormBuilder,
@@ -29,6 +33,7 @@ export class WatchersTableComponent implements OnInit {
     public messageService: MessageService,
     public confirmationService: ConfirmationService,
     public dialogService: DialogService,
+    public deviceService: DevicesService,
   ) {
     this.searchForm = this.fb.group({
       name: [''],
@@ -38,6 +43,7 @@ export class WatchersTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadWatchers();
+    this.loadData();
   }
 
   loadWatchers(): void {
@@ -106,5 +112,17 @@ export class WatchersTableComponent implements OnInit {
         }
       }
     });
+  }
+
+  loadData(): void {
+    this.deviceService.get()
+      .subscribe({
+        next: devices => {
+          this.devices = devices;
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
   }
 }

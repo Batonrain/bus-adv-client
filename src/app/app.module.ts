@@ -24,7 +24,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ChipModule } from 'primeng/chip';
 import { FieldsetModule } from 'primeng/fieldset';
 import { CardModule } from 'primeng/card';
-import { PickListModule } from 'primeng/picklist';
+import { MultiSelectModule } from 'primeng/multiselect';
+
 
 // Внутренние компоненты
 import { AppRoutingModule } from './app-routing.module';
@@ -101,7 +102,7 @@ import { WatcherDevicesPickerComponent } from './admin/watchers-panel/watcher-de
     ChipModule,
     FieldsetModule,
     CardModule,
-    PickListModule,
+    MultiSelectModule,
   ],
   providers: [
     {
