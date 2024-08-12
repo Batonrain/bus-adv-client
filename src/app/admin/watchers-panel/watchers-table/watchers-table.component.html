@@ -1,6 +1,6 @@
 <p-card header="Управление доступами для заказчиков">
   <div class="p-d-flex p-jc-end p-mb-3" style="margin-bottom: 15px;">
-    <button pButton label="Добавить пользователя" icon="pi pi-plus" class="p-button-rounded p-button-success p-mb-3"
+    <button pButton label="Добавить заказчика" icon="pi pi-plus" class="p-button-rounded p-button-success p-mb-3"
       (click)="onAddWatcher()"></button>
   </div>
   <p-table [value]="watchers">
@@ -17,14 +17,14 @@
         <td>{{watcher.name}}</td>
         <td>{{watcher.email}}</td>
         <td>
-          <p-multiSelect appendTo="body" [maxSelectedLabels]="3" [options]="devices" [(ngModel)]="selectedDevices"
-            optionLabel="name" display="chip" [showClear]="true" placeholder="выбрать устройства" />
+          <p-multiSelect appendTo="body" [maxSelectedLabels]="3" [options]="devices" [(ngModel)]="watcher.devices"
+            optionLabel="name" display="chip" [showClear]="true" placeholder="выбрать устройства" [ngStyle]="{'width': '80%'}"/>
+            <button pButton icon="pi pi-save" class="p-button-rounded p-button-success p-mr-2 mr-l-5"
+            (click)="saveDevices(watcher)"></button>
         </td>
         <td>
           <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2 mr-r-5"
             (click)="editWatcher(watcher)"></button>
-          <button pButton icon="pi pi-plus" class="p-button-rounded p-button-info mr-r-5"
-            (click)="onAddDevices()"></button>
           <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger mr-r-5"
             (click)="onDeleteWatcher(watcher)"></button>
         </td>

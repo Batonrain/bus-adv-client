@@ -1,3 +1,11 @@
 .mr-r-5{
     margin-right: 5px;
 }
+
+.mr-l-5{
+    margin-left: 5px;
+}
+
+.p-multiselect {
+    width: 80%;
+}

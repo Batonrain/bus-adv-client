@@ -9,6 +9,8 @@ import { WatcherService } from 'src/app/services/watcher.service';
 import { CreateWatcherFormComponent } from '../create-watcher-form/create-watcher-form.component';
 import { DevicesService } from 'src/app/services/devices.service';
 import { Device } from 'src/app/models/device.models';
+import { AddDevicesToWatcherModel } from 'src/app/models/add-devices-to-watcher.model';
+import { WatcherDeviceModel } from 'src/app/models/watcher-device.model';
 
 @Component({
   selector: 'app-watchers-table',
@@ -19,12 +21,8 @@ import { Device } from 'src/app/models/device.models';
 export class WatchersTableComponent implements OnInit {
   watchers: WatcherInfoModel[] = [];
   searchForm: FormGroup;
-  selectedUser: ShortUserInfo | null = null;
-  displayRoleDialog: boolean = false;
-  displayResetPasswordDialog: boolean = false;
   ref: DynamicDialogRef | undefined;
-  public devices: Device[] = [];
-  public selectedDevices: Device[] = [];
+  public devices: WatcherDeviceModel[] = [];
 
   constructor(
     public fb: FormBuilder,
@@ -44,16 +42,20 @@ export class WatchersTableComponent implements OnInit {
   ngOnInit(): void {
     this.loadWatchers();
     this.loadData();
+
+
   }
 
   loadWatchers(): void {
     this.watcherService.get().subscribe(watchers => {
-      console.log("loadWatchers", watchers);
+      console.log(watchers);
       this.watchers = watchers;
     });
   }
 
   editWatcher(user: ShortUserInfo): void {
+    console.log('watcher devices', this.watchers[0].devices);
+    console.log('all devices', this.devices)
     // this.ref = this.dialogService.open(UserFormComponent, {
     //   header: `Редактирование ${user.firstName} ${user.secondName}`,
     //   width: '60%',
@@ -88,8 +90,18 @@ export class WatchersTableComponent implements OnInit {
     });
   }
 
-  onAddDevices(): void {
-
+  saveDevices(watcher: WatcherInfoModel): void {
+    let request: AddDevicesToWatcherModel = {
+      watcherId: watcher.id,
+      devices: watcher.devices.map(d => d.id.toString()),
+    };
+    console.log(request);
+    this.watcherService.updateDevices(request).subscribe(
+      () => {
+        this.loadWatchers();
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Список устройств изменен' });
+      }
+    )
   }
 
   onDeleteWatcher(user: ShortUserInfo): void {
@@ -115,7 +127,7 @@ export class WatchersTableComponent implements OnInit {
   }
 
   loadData(): void {
-    this.deviceService.get()
+    this.watcherService.getDevices()
       .subscribe({
         next: devices => {
           this.devices = devices;

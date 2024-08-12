@@ -9,6 +9,8 @@ import { CreateUserInfo } from '../models/create-user-info.model';
 import { UpdatePasswordModel } from '../models/update-password.model';
 import { CreateWatcherModel } from '../models/create-watcher.models';
 import { WatcherInfoModel } from '../models/watcher-info.model';
+import { AddDevicesToWatcherModel } from '../models/add-devices-to-watcher.model';
+import { WatcherDeviceModel } from '../models/watcher-device.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +27,10 @@ export class WatcherService {
     return this.http.get<WatcherInfoModel[]>(`${this.baseUrl}/watchers`);
   }
 
+  getDevices(): Observable<WatcherDeviceModel[]> {
+    return this.http.get<WatcherDeviceModel[]>(`${this.baseUrl}/devices`);
+  }
+
   create(user: CreateWatcherModel): Observable<WatcherInfoModel> {
     return this.http.post<WatcherInfoModel>(`${this.baseUrl}/create`, user);
   }
@@ -39,6 +45,10 @@ export class WatcherService {
 
   resetPassword(model: UpdatePasswordModel): Observable<string> {
     return this.http.post<string>(`${this.baseUrl}/update-password`, model);
+  }
+
+  updateDevices(model: AddDevicesToWatcherModel): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/add-devices`, model);
   }
 
   generatePassword(): string {
