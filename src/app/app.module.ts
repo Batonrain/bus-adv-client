@@ -52,6 +52,7 @@ import { CreateUserFormComponent } from './admin/create-user-form/create-user-fo
 import { WatchersTableComponent } from './admin/watchers-panel/watchers-table/watchers-table.component';
 import { CreateWatcherFormComponent } from './admin/watchers-panel/create-watcher-form/create-watcher-form.component';
 import { WatcherDevicesPickerComponent } from './admin/watchers-panel/watcher-devices-picker/watcher-devices-picker.component';
+import { EditWatcherFormComponent } from './admin/watchers-panel/edit-watcher-form/edit-watcher-form.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { WatcherDevicesPickerComponent } from './admin/watchers-panel/watcher-de
     WatchersTableComponent,
     CreateWatcherFormComponent,
     WatcherDevicesPickerComponent,
+    EditWatcherFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,7 +105,6 @@ import { WatcherDevicesPickerComponent } from './admin/watchers-panel/watcher-de
     FieldsetModule,
     CardModule,
     MultiSelectModule,
-    ReactiveFormsModule,
   ],
   providers: [
     {

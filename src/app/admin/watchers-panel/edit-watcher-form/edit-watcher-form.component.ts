@@ -24,7 +24,6 @@ export class EditWatcherFormComponent implements OnInit {
     this.watcherForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
     });    
   }
 
@@ -38,7 +37,7 @@ export class EditWatcherFormComponent implements OnInit {
     if (this.watcherForm.valid) {
       let watcher: UpdateWatcherModel = {
         id: this.userId,
-        username: this.watcherForm.value.firstName,
+        username: this.watcherForm.value.name,
         email: this.watcherForm.value.email
       };
       this.watcherService.update(watcher).subscribe(() => {
