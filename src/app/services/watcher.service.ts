@@ -32,6 +32,10 @@ export class WatcherService {
     return this.http.get<WatcherDeviceModel[]>(`${this.baseUrl}/devices`);
   }
 
+  getAvailableDevices(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/my-devices`);
+  }
+
   create(user: CreateWatcherModel): Observable<WatcherInfoModel> {
     return this.http.post<WatcherInfoModel>(`${this.baseUrl}/create`, user);
   }

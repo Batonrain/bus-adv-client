@@ -8,12 +8,14 @@ import { AllocationsListComponent } from './adv-devices/allocations/allocations-
 import { PlaylistComponent } from './adv-devices/playlist/playlist.component';
 import { UserManagerComponent } from './admin/user-manager/user-manager.component';
 import { WatchersTableComponent } from './admin/watchers-panel/watchers-table/watchers-table.component';
+import { WatcherDevicesComponent } from './watcher/watcher-devices/watcher-devices.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UserManagerComponent },
   { path: 'watchers', component: WatchersTableComponent },
   { path: 'devices', component: DevicesListComponent },
+  { path: 'my-devices', component: WatcherDevicesComponent },
   { path: 'cities', component: CitiesListComponent},
   { path: 'allocations', component: AllocationsListComponent},
   { path: 'playlists', component: PlaylistComponent},

@@ -38,7 +38,10 @@ export class LoginComponent implements OnInit {
       next: data => {
         console.log("login", data);
         this.storageService.saveUserInfo(data);
-        console.log(this.storageService.getRoles())
+        let roles = this.storageService.getRoles()
+        if(this.containsWatcher(roles)){
+          this.router.navigate(['/watcher']);
+        }
         this.router.navigate(["/devices"]);
       },
       error: err => {
@@ -55,5 +58,13 @@ export class LoginComponent implements OnInit {
 
   reloadPage(): void {
     window.location.reload();
+  }
+
+  containsAdmin(strings: string[]): boolean {
+    return strings.some(str => str.toLowerCase() === 'admin');
+  }
+
+  containsWatcher(strings: string[]): boolean {
+    return strings.some(str => str.toLowerCase() === 'watcher');
   }
 }

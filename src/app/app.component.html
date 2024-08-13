@@ -5,7 +5,7 @@
       <li class="nav-item" *ngIf="isAdmin">
         <a href="/users" class="nav-link" routerLink="users">Пользователи</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isAdmin && !isWatcher">
         <a href="/devices" class="nav-link" routerLink="devices">Устройства</a>
       </li>
       <li class="nav-item" *ngIf="isAdmin">
@@ -19,6 +19,9 @@
       </li>
       <li class="nav-item" *ngIf="isAdmin">
         <a href="/watchers" class="nav-link" routerLink="watchers">Доступ для заказчиков</a>
+      </li>
+      <li class="nav-item" *ngIf="isWatcher">
+        <a href="/my-devices" class="nav-link" routerLink="my-devices">Мои устройства</a>
       </li>
     </ul>
   </nav>

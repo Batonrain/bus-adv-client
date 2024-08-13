@@ -53,6 +53,8 @@ import { WatchersTableComponent } from './admin/watchers-panel/watchers-table/wa
 import { CreateWatcherFormComponent } from './admin/watchers-panel/create-watcher-form/create-watcher-form.component';
 import { WatcherDevicesPickerComponent } from './admin/watchers-panel/watcher-devices-picker/watcher-devices-picker.component';
 import { EditWatcherFormComponent } from './admin/watchers-panel/edit-watcher-form/edit-watcher-form.component';
+import { WatcherDevicesComponent } from './watcher/watcher-devices/watcher-devices.component';
+import { WatcherVideoComponent } from './watcher/watcher-video/watcher-video.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,8 @@ import { EditWatcherFormComponent } from './admin/watchers-panel/edit-watcher-fo
     CreateWatcherFormComponent,
     WatcherDevicesPickerComponent,
     EditWatcherFormComponent,
+    WatcherDevicesComponent,
+    WatcherVideoComponent,
   ],
   imports: [
     BrowserModule,

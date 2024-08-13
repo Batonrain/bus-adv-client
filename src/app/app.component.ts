@@ -10,6 +10,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'Личный кабинет';
   isAdmin: boolean = false;
+  isWatcher: boolean = false;
 
   constructor(private storageService: StorageService, private authService: AuthService) { }
 
@@ -18,6 +19,7 @@ export class AppComponent {
     if (isLoggedIn) {
       let roles = this.storageService.getRoles();
       this.isAdmin = this.containsAdmin(roles);
+      this.isWatcher = this.containsWatcher(roles);
     }
   }
 
@@ -35,5 +37,9 @@ export class AppComponent {
 
   containsAdmin(strings: string[]): boolean {
     return strings.some(str => str.toLowerCase() === 'admin');
+  }
+
+  containsWatcher(strings: string[]): boolean {
+    return strings.some(str => str.toLowerCase() === 'watcher');
   }
 }
