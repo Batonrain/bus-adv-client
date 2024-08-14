@@ -21,13 +21,13 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
 
   constructor(
-    private authService: AuthService, 
+    private authService: AuthService,
     private storageService: StorageService,
     private messageService: MessageService,
     private router: Router) { }
 
   ngOnInit(): void {
-    
+
   }
 
   onSubmit(): void {
@@ -39,10 +39,13 @@ export class LoginComponent implements OnInit {
         console.log("login", data);
         this.storageService.saveUserInfo(data);
         let roles = this.storageService.getRoles()
-        if(this.containsWatcher(roles)){
+        if (this.containsWatcher(roles)) {
           this.router.navigate(['/watcher']);
         }
-        this.router.navigate(["/devices"]);
+        else {
+          this.router.navigate(["/devices"]);
+        }
+
       },
       error: err => {
         console.log("Ошибка входа");
@@ -54,7 +57,7 @@ export class LoginComponent implements OnInit {
 
   showError(errorMessage: string) {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: errorMessage });
-}
+  }
 
   reloadPage(): void {
     window.location.reload();
